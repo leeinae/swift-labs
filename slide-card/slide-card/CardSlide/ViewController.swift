@@ -31,9 +31,7 @@ class ViewController: UIViewController {
             collectionView.backgroundColor = .white
 
             collectionView.contentInsetAdjustmentBehavior = .never
-//            collectionView.decelerationRate = .fast
-
-            collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            collectionView.decelerationRate = .fast
 
             collectionView.delegate = self
             collectionView.dataSource = self
@@ -99,11 +97,30 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         let inset = view.frame.width * 0.2 / 2
         return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
     }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        cardSize
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        view.frame.width * 0.2 / 2
+    }
+
+    /// velocity - 스크롤하다 터치 해제 시 속도
+    /// targetContentOffset - 스크롤 속도가 줄어들어 정지될 때 예상되는 위치
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let spacing = cardSize.width + (view.frame.width * 0.2 / 2)
+        var offset = targetContentOffset.pointee
+        let index = round((offset.x + scrollView.contentInset.left) / spacing)
+
+        offset = CGPoint(x: index * spacing - scrollView.contentInset.left, y: scrollView.contentInset.top)
+        targetContentOffset.pointee = offset
+    }
 }
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        20
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

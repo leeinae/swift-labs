@@ -12,6 +12,7 @@
 		AB5AF71926876447001D3CD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AF71826876447001D3CD1 /* ViewController.swift */; };
 		AB5AF71E26876449001D3CD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB5AF71D26876449001D3CD1 /* Assets.xcassets */; };
 		AB5AF72126876449001D3CD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB5AF71F26876449001D3CD1 /* LaunchScreen.storyboard */; };
+		AB5AF72E26877A6A001D3CD1 /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AF72D26877A6A001D3CD1 /* CardCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		AB5AF71D26876449001D3CD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB5AF72026876449001D3CD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB5AF72226876449001D3CD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB5AF72D26877A6A001D3CD1 /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardCollectionViewCell.swift; path = "slide-card/Card/CardCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		AB5AF71326876447001D3CD1 /* slide-card */ = {
 			isa = PBXGroup;
 			children = (
+				AB5AF72B26877A3B001D3CD1 /* Card */,
 				AB5AF72A268765EC001D3CD1 /* Supporting Files */,
 				AB5AF72926876557001D3CD1 /* CardSlide */,
 			);
@@ -78,6 +81,14 @@
 				AB5AF71626876447001D3CD1 /* SceneDelegate.swift */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AB5AF72B26877A3B001D3CD1 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				AB5AF72D26877A6A001D3CD1 /* CardCollectionViewCell.swift */,
+			);
+			path = Card;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB5AF72E26877A6A001D3CD1 /* CardCollectionViewCell.swift in Sources */,
 				AB5AF71926876447001D3CD1 /* ViewController.swift in Sources */,
 				AB5AF71526876447001D3CD1 /* AppDelegate.swift in Sources */,
 				AB5AF71726876447001D3CD1 /* SceneDelegate.swift in Sources */,

@@ -62,6 +62,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         setConstraint()
+        setCollectionView()
     }
 
     // MARK: - Actions
@@ -85,6 +86,10 @@ class ViewController: UIViewController {
         collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
 
+    func setCollectionView() {
+        collectionView.register(CardCollectionViewCell.self, forCellWithReuseIdentifier: CardCollectionViewCell.identifier)
+    }
+
     // MARK: - Protocols
 }
 
@@ -96,6 +101,11 @@ extension ViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        UICollectionViewCell()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CardCollectionViewCell.identifier, for: indexPath) as? CardCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.setCell(idx: indexPath.row)
+
+        return cell
     }
 }

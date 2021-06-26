@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     private lazy var collectionViewLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: view.frame.width * 0.8, height: view.frame.height * 0.8)
+        layout.itemSize = CGSize(width: view.frame.width * 0.8, height: view.frame.height * 0.5)
 
         return layout
     }()
@@ -28,9 +28,10 @@ class ViewController: UIViewController {
     private lazy var
         collectionView: UICollectionView = {
             let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+            collectionView.backgroundColor = .white
+
             collectionView.contentInsetAdjustmentBehavior = .never
-            collectionView.decelerationRate = .fast
-            collectionView.backgroundColor = .black
+//            collectionView.decelerationRate = .fast
 
             collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 
@@ -93,7 +94,12 @@ class ViewController: UIViewController {
     // MARK: - Protocols
 }
 
-extension ViewController: UICollectionViewDelegateFlowLayout {}
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        let inset = view.frame.width * 0.2 / 2
+        return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
+    }
+}
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -15,6 +15,7 @@ class CardCollectionViewCell: UICollectionViewCell {
     private var label: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
+        label.textColor = .white
         
         return label
     }()
@@ -25,7 +26,8 @@ class CardCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
+        initCell()
         setConstraint()
     }
     
@@ -46,13 +48,20 @@ class CardCollectionViewCell: UICollectionViewCell {
         [label].forEach { v in
             contentView.addSubview(v)
         }
+        
+        label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
     
     func setCell(idx: Int) {
-        contentView.backgroundColor = .blue
-        
-        label.text = "\(idx) 번째"
+        label.text = "\(idx + 1) 번째"
     }
     
+    func initCell() {
+        contentView.backgroundColor = .blue
+        contentView.layer.cornerRadius = 30
+        contentView.layer.masksToBounds = true
+    }
+
     // MARK: - Protocols
 }

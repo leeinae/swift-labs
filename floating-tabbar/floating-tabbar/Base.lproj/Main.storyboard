@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--View Controller-->
         <scene sceneID="flc-qL-o4t">
             <objects>
                 <viewController id="kzN-J5-wIS" sceneMemberID="viewController">
@@ -18,13 +18,29 @@
                         <viewLayoutGuide key="safeArea" id="rIF-Do-ZBo"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" image="square.and.arrow.up.on.square.fill" catalog="system" selectedImage="square.and.arrow.up.on.square.fill" id="c69-YX-Udx"/>
+                    <tabBarItem key="tabBarItem" title="" id="c69-YX-Udx"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5EJ-61-2OF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-152" y="372"/>
         </scene>
-        <!--Item 3-->
+        <!--View Controller-->
+        <scene sceneID="HzM-63-fXd">
+            <objects>
+                <viewController id="VFp-En-IlK" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AA8-5J-Kc5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="lTo-SM-tOe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="eBO-Cz-qFB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8R0-SD-Hd5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-203" y="1772"/>
+        </scene>
+        <!--View Controller-->
         <scene sceneID="me2-ie-3KY">
             <objects>
                 <viewController id="d9l-vn-22J" sceneMemberID="viewController">
@@ -34,14 +50,14 @@
                         <viewLayoutGuide key="safeArea" id="xt2-G7-kDj"/>
                         <color key="backgroundColor" systemColor="systemTealColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 3" image="trash.fill" catalog="system" id="ZCi-WH-1iu"/>
+                    <tabBarItem key="tabBarItem" title="" id="ZCi-WH-1iu"/>
                     <navigationItem key="navigationItem" id="X6z-86-y3H"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Qi-gR-764" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-152" y="1081"/>
         </scene>
-        <!--Item 1-->
+        <!--View Controller-->
         <scene sceneID="zIT-g8-51u">
             <objects>
                 <viewController id="IUQ-vO-5y9" sceneMemberID="viewController">
@@ -51,7 +67,9 @@
                         <viewLayoutGuide key="safeArea" id="Mbd-ff-NxE"/>
                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" image="pencil" catalog="system" selectedImage="pencil" id="j2v-cA-haf"/>
+                    <tabBarItem key="tabBarItem" title="" id="j2v-cA-haf">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WqV-3r-UJh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -71,6 +89,7 @@
                         <segue destination="IUQ-vO-5y9" kind="relationship" relationship="viewControllers" id="s9l-d6-TKR"/>
                         <segue destination="kzN-J5-wIS" kind="relationship" relationship="viewControllers" id="vdj-RM-C8q"/>
                         <segue destination="d9l-vn-22J" kind="relationship" relationship="viewControllers" id="w0O-be-duL"/>
+                        <segue destination="VFp-En-IlK" kind="relationship" relationship="viewControllers" id="qtz-pR-Z34"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wc1-mZ-Ac5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -79,9 +98,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="pencil" catalog="system" width="128" height="113"/>
-        <image name="square.and.arrow.up.on.square.fill" catalog="system" width="117" height="128"/>
-        <image name="trash.fill" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

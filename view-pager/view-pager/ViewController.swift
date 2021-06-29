@@ -8,6 +8,12 @@
 import SnapKit
 import UIKit
 
+enum menuStatus: Int {
+    case profile = 0
+    case job = 1
+    case weather = 2
+}
+
 class ViewController: UIViewController {
     private lazy var menuCollectionView: UICollectionView = {
         var layout = UICollectionViewFlowLayout()
@@ -30,13 +36,8 @@ class ViewController: UIViewController {
         return view
     }()
 
-    private let containerView: UIView = {
-        let view = UIView()
-        return view
-    }()
-
-    private let pageViewController: UIPageViewController = {
-        let pageViewController = UIPageViewController()
+    private let pageViewController: PageViewController = {
+        let pageViewController = PageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: .none)
 
         return pageViewController
     }()
@@ -60,7 +61,7 @@ class ViewController: UIViewController {
     }
 
     func setConstraint() {
-        let views: [UIView] = [menuCollectionView, menuDividerView, containerView]
+        let views: [UIView] = [menuCollectionView, menuDividerView, pageViewController.view]
         views.forEach { v in
             view.addSubview(v)
         }
@@ -78,7 +79,7 @@ class ViewController: UIViewController {
             make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(20)
         }
 
-        containerView.snp.makeConstraints { make in
+        pageViewController.view.snp.makeConstraints { make in
             make.top.equalTo(menuDividerView.snp.bottom)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
@@ -96,8 +97,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-        return CGSize(width: menuSize.width + 30, height: menuSize.height + 20)
+        CGSize(width: menuSize.width + 30, height: menuSize.height + 20)
     }
 }
 
@@ -108,9 +108,12 @@ extension ViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCollectionViewCell.identifier, for: indexPath) as? MenuCollectionViewCell else { return UICollectionViewCell() }
-        print(menu[indexPath.row])
 
         cell.setCell(menu: menu[indexPath.row])
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        pageViewController.current
     }
 }

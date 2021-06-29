@@ -13,10 +13,23 @@ class MenuCollectionViewCell: UICollectionViewCell {
     private let menuTitle: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
-        label.textColor = .black
 
         return label
     }()
+
+    override var isSelected: Bool {
+        willSet {
+            if newValue {
+                menuTitle.textColor = .black
+            } else {
+                menuTitle.textColor = .lightGray
+            }
+        }
+    }
+
+    override func prepareForReuse() {
+        isSelected = false
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)

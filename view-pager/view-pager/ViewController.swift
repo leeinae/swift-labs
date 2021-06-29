@@ -22,6 +22,7 @@ class ViewController: UIViewController {
         collectionView.backgroundColor = .white
 
         collectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: MenuCollectionViewCell.identifier)
+        collectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .right)
 
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -29,7 +30,7 @@ class ViewController: UIViewController {
         return collectionView
     }()
 
-    private var menuDividerView: UIView = {
+    private var menuIndicatorView: UIView = {
         let view = UIView()
         view.backgroundColor = .orange
 
@@ -44,6 +45,7 @@ class ViewController: UIViewController {
         collectionView.backgroundColor = .white
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .right)
 
         collectionView.register(SectionCollectionViewCell.self, forCellWithReuseIdentifier: SectionCollectionViewCell.identifier)
 
@@ -54,14 +56,7 @@ class ViewController: UIViewController {
     }()
 
     var selectedIdx = 0
-    var menuSize: CGSize = {
-        let label = UILabel()
-        label.text = "pro"
-        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
-        label.sizeToFit()
-
-        return label.bounds.size
-    }()
+    var label = UILabel()
 
     let menu = ["profile", "job", "weather"]
     let subViewControllers: [UIViewController] = [FirstViewController(), SecondViewController(), ThirdViewController()]
@@ -69,30 +64,36 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setCollectionView()
         setConstraint()
     }
 
+    func setCollectionView() {
+        collectionView(menuCollectionView, didSelectItemAt: IndexPath(row: 0, section: 0))
+    }
+
     func setConstraint() {
-        let views: [UIView] = [menuCollectionView, menuDividerView, sectionCollectionView]
+        let views: [UIView] = [menuCollectionView, menuIndicatorView, sectionCollectionView]
         views.forEach { v in
             view.addSubview(v)
         }
 
+        let labelSize = calcLabelSize(text: menu[0])
         menuCollectionView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(self.menuSize.height + 20)
+            make.height.equalTo(labelSize.height + 20)
         }
 
-        menuDividerView.snp.makeConstraints { make in
+        menuIndicatorView.snp.makeConstraints { make in
             make.top.equalTo(menuCollectionView.snp.bottom)
-            make.width.equalTo(self.menuSize.width + 30)
+            make.width.equalTo(labelSize.width + 30)
             make.height.equalTo(5)
             make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(20)
         }
 
         sectionCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(menuDividerView.snp.bottom)
+            make.top.equalTo(menuIndicatorView.snp.bottom)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
@@ -107,6 +108,18 @@ class ViewController: UIViewController {
         /// 자식 뷰컨이 부모 뷰컨으로부터 추가, 삭제되는 상황에 반응할 수 있도록.
         viewColtroller.didMove(toParent: self)
         return cell
+    }
+
+    func calcLabelSize(text: String) -> CGSize {
+        label.text = text
+        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        label.sizeToFit()
+
+        return label.bounds.size
+    }
+
+    func scrollToMenu(to index: Int) {
+        menuCollectionView.selectItem(at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .right)
     }
 }
 
@@ -126,8 +139,13 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let label = UILabel()
+        label.text = menu[indexPath.row]
+        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        label.sizeToFit()
+
         if collectionView == menuCollectionView {
-            return CGSize(width: menuSize.width + 30, height: menuSize.height + 20)
+            return CGSize(width: label.bounds.width + 30, height: label.bounds.height + 20)
         }
         let height = UIScreen.main.bounds.height - (menuCollectionView.contentSize.height + 5)
         return CGSize(width: UIScreen.main.bounds.width, height: height)
@@ -147,6 +165,13 @@ extension ViewController: UICollectionViewDataSource {
         case menuCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCollectionViewCell.identifier, for: indexPath) as? MenuCollectionViewCell else { return UICollectionViewCell() }
 
+            if indexPath.row == 0 {
+                cell.isSelected = true
+                menuCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
+            } else {
+                cell.isSelected = false
+            }
+
             cell.setCell(menu: menu[indexPath.row])
             return cell
         case sectionCollectionView:
@@ -160,6 +185,13 @@ extension ViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        pageViewController.current
+        if collectionView == menuCollectionView {}
+    }
+}
+
+extension ViewController: UICollectionViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let idx = Int(scrollView.contentOffset.x / UIScreen.main.bounds.width)
+        scrollToMenu(to: idx)
     }
 }

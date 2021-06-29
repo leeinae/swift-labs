@@ -30,6 +30,7 @@ class SectionCollectionViewCell: UICollectionViewCell {
         for subView in subViews {
             if subView.tag == SectionCollectionViewCell.SUBVIEW_TAG {
                 subView.removeFromSuperview()
+                print("remove")
             }
         }
     }

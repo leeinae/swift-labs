@@ -177,7 +177,6 @@ extension ViewController: UICollectionViewDataSource {
         case sectionCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SectionCollectionViewCell.identifier, for: indexPath) as? SectionCollectionViewCell else { return UICollectionViewCell() }
             let sectionVC = subViewControllers[indexPath.row]
-            print(cell, "✏️")
 
             return wrapAndGetCell(viewColtroller: sectionVC, cell: cell)
         default:
@@ -187,11 +186,9 @@ extension ViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == menuCollectionView {
-            let rect = sectionCollectionView.layoutAttributesForItem(at: indexPath)?.frame
-            sectionCollectionView.scrollRectToVisible(rect!, animated: false)
-
-//            sectionCollectionView.contentSize = CGSize(width: sectionCollectionView.bounds.width * CGFloat(subViewControllers.count), height: sectionCollectionView.bounds.height)
-//            sectionCollectionView.scrollToItem(at: IndexPath(row: indexPath.row, section: 0), at: .left, animated: false)
+            sectionCollectionView.isPagingEnabled = false
+            sectionCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+            sectionCollectionView.isPagingEnabled = true
         }
     }
 }

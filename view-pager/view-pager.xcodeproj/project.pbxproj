@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,10 @@
 		AB5AF78E268A3EDA001D3CD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB5AF78C268A3EDA001D3CD1 /* LaunchScreen.storyboard */; };
 		AB5AF796268A4979001D3CD1 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AF795268A4979001D3CD1 /* PageViewController.swift */; };
 		AB5AF79B268A4AC2001D3CD1 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AF799268A4AC2001D3CD1 /* MenuCollectionViewCell.swift */; };
+		AB5AF79F268B03E0001D3CD1 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AF79E268B03E0001D3CD1 /* FirstViewController.swift */; };
+		AB5AF7A1268B03F4001D3CD1 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AF7A0268B03F4001D3CD1 /* SecondViewController.swift */; };
+		AB5AF7A3268B0404001D3CD1 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AF7A2268B0404001D3CD1 /* ThirdViewController.swift */; };
+		AB5AF7A8268B178F001D3CD1 /* SectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AF7A7268B178F001D3CD1 /* SectionCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +35,10 @@
 		AB5AF78F268A3EDA001D3CD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB5AF795268A4979001D3CD1 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		AB5AF799268A4AC2001D3CD1 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		AB5AF79E268B03E0001D3CD1 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		AB5AF7A0268B03F4001D3CD1 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		AB5AF7A2268B0404001D3CD1 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		AB5AF7A7268B178F001D3CD1 /* SectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		BC8141FCDC584788110F1494 /* Pods-view-pager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-view-pager.debug.xcconfig"; path = "Target Support Files/Pods-view-pager/Pods-view-pager.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,7 +60,6 @@
 				BC8141FCDC584788110F1494 /* Pods-view-pager.debug.xcconfig */,
 				28147A8F4112975FFBE1EC8B /* Pods-view-pager.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -77,6 +84,9 @@
 		AB5AF780268A3ED7001D3CD1 /* view-pager */ = {
 			isa = PBXGroup;
 			children = (
+				AB5AF7A5268B1740001D3CD1 /* Section */,
+				AB5AF7A4268B173B001D3CD1 /* Menu */,
+				AB5AF79D268B03CA001D3CD1 /* ChildViewController */,
 				AB5AF781268A3ED7001D3CD1 /* AppDelegate.swift */,
 				AB5AF783268A3ED7001D3CD1 /* SceneDelegate.swift */,
 				AB5AF785268A3ED7001D3CD1 /* ViewController.swift */,
@@ -85,9 +95,34 @@
 				AB5AF78C268A3EDA001D3CD1 /* LaunchScreen.storyboard */,
 				AB5AF78F268A3EDA001D3CD1 /* Info.plist */,
 				AB5AF795268A4979001D3CD1 /* PageViewController.swift */,
-				AB5AF799268A4AC2001D3CD1 /* MenuCollectionViewCell.swift */,
 			);
 			path = "view-pager";
+			sourceTree = "<group>";
+		};
+		AB5AF79D268B03CA001D3CD1 /* ChildViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AB5AF79E268B03E0001D3CD1 /* FirstViewController.swift */,
+				AB5AF7A0268B03F4001D3CD1 /* SecondViewController.swift */,
+				AB5AF7A2268B0404001D3CD1 /* ThirdViewController.swift */,
+			);
+			path = ChildViewController;
+			sourceTree = "<group>";
+		};
+		AB5AF7A4268B173B001D3CD1 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				AB5AF799268A4AC2001D3CD1 /* MenuCollectionViewCell.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		AB5AF7A5268B1740001D3CD1 /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				AB5AF7A7268B178F001D3CD1 /* SectionCollectionViewCell.swift */,
+			);
+			path = Section;
 			sourceTree = "<group>";
 		};
 		B285252A554AA73B57EDC18F /* Frameworks */ = {
@@ -215,7 +250,11 @@
 				AB5AF786268A3ED7001D3CD1 /* ViewController.swift in Sources */,
 				AB5AF782268A3ED7001D3CD1 /* AppDelegate.swift in Sources */,
 				AB5AF784268A3ED7001D3CD1 /* SceneDelegate.swift in Sources */,
+				AB5AF79F268B03E0001D3CD1 /* FirstViewController.swift in Sources */,
+				AB5AF7A1268B03F4001D3CD1 /* SecondViewController.swift in Sources */,
 				AB5AF796268A4979001D3CD1 /* PageViewController.swift in Sources */,
+				AB5AF7A3268B0404001D3CD1 /* ThirdViewController.swift in Sources */,
+				AB5AF7A8268B178F001D3CD1 /* SectionCollectionViewCell.swift in Sources */,
 				AB5AF79B268A4AC2001D3CD1 /* MenuCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

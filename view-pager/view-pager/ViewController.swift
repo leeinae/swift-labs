@@ -36,10 +36,21 @@ class ViewController: UIViewController {
         return view
     }()
 
-    private let pageViewController: PageViewController = {
-        let pageViewController = PageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: .none)
+    private lazy var sectionCollectionView: UICollectionView = {
+        var layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
 
-        return pageViewController
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .white
+        collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
+
+        collectionView.register(SectionCollectionViewCell.self, forCellWithReuseIdentifier: SectionCollectionViewCell.identifier)
+
+        collectionView.delegate = self
+        collectionView.dataSource = self
+
+        return collectionView
     }()
 
     var selectedIdx = 0
@@ -53,6 +64,7 @@ class ViewController: UIViewController {
     }()
 
     let menu = ["profile", "job", "weather"]
+    let subViewControllers: [UIViewController] = [FirstViewController(), SecondViewController(), ThirdViewController()]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +73,7 @@ class ViewController: UIViewController {
     }
 
     func setConstraint() {
-        let views: [UIView] = [menuCollectionView, menuDividerView, pageViewController.view]
+        let views: [UIView] = [menuCollectionView, menuDividerView, sectionCollectionView]
         views.forEach { v in
             view.addSubview(v)
         }
@@ -79,38 +91,72 @@ class ViewController: UIViewController {
             make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(20)
         }
 
-        pageViewController.view.snp.makeConstraints { make in
+        sectionCollectionView.snp.makeConstraints { make in
             make.top.equalTo(menuDividerView.snp.bottom)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
+
+    func wrapAndGetCell(viewColtroller: UIViewController, cell: SectionCollectionViewCell) -> SectionCollectionViewCell {
+        viewColtroller.view.tag = SectionCollectionViewCell.SUBVIEW_TAG
+        cell.contentView.addSubview(viewColtroller.view)
+
+        /// 다른 UIViewController, PageViewController 등의 컨테이너 뷰컨에서 다른 UIViewController가 추가, 삭제된 후에 호출된다.
+        /// 인자로 부모 뷰컨을 넣어서 호출해줌..
+        /// 자식 뷰컨이 부모 뷰컨으로부터 추가, 삭제되는 상황에 반응할 수 있도록.
+        viewColtroller.didMove(toParent: self)
+        return cell
+    }
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        20
+        if collectionView == menuCollectionView {
+            return 20
+        }
+        return 0
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+        if collectionView == menuCollectionView {
+            return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+        }
+        return .zero
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: menuSize.width + 30, height: menuSize.height + 20)
+        if collectionView == menuCollectionView {
+            return CGSize(width: menuSize.width + 30, height: menuSize.height + 20)
+        }
+        let height = UIScreen.main.bounds.height - (menuCollectionView.contentSize.height + 5)
+        return CGSize(width: UIScreen.main.bounds.width, height: height)
     }
 }
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        menu.count
+        if collectionView == menuCollectionView {
+            return menu.count
+        }
+        return subViewControllers.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCollectionViewCell.identifier, for: indexPath) as? MenuCollectionViewCell else { return UICollectionViewCell() }
+        switch collectionView {
+        case menuCollectionView:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCollectionViewCell.identifier, for: indexPath) as? MenuCollectionViewCell else { return UICollectionViewCell() }
 
-        cell.setCell(menu: menu[indexPath.row])
-        return cell
+            cell.setCell(menu: menu[indexPath.row])
+            return cell
+        case sectionCollectionView:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SectionCollectionViewCell.identifier, for: indexPath) as? SectionCollectionViewCell else { return UICollectionViewCell() }
+            let sectionVC = subViewControllers[indexPath.row]
+
+            return wrapAndGetCell(viewColtroller: sectionVC, cell: cell)
+        default:
+            return UICollectionViewCell()
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

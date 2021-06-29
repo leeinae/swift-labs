@@ -5,18 +5,84 @@
 //  Created by inae Lee on 2021/06/29.
 //
 
+import SnapKit
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet var menuCollectionView: UICollectionView!
+    private lazy var menuCollectionView: UICollectionView = {
+        var layout = UICollectionViewFlowLayout()
+
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .white
+
+        collectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: MenuCollectionViewCell.identifier)
+
+        collectionView.delegate = self
+        collectionView.dataSource = self
+
+        return collectionView
+    }()
+
+    private var menuDividerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .orange
+
+        return view
+    }()
+
+    private let containerView: UIView = {
+        let view = UIView()
+        return view
+    }()
+
+    private let pageViewController: UIPageViewController = {
+        let pageViewController = UIPageViewController()
+
+        return pageViewController
+    }()
+
+    var selectedIdx = 0
+    var menuSize: CGSize = {
+        let label = UILabel()
+        label.text = "pro"
+        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        label.sizeToFit()
+
+        return label.bounds.size
+    }()
 
     let menu = ["profile", "job", "weather"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        menuCollectionView.delegate = self
-        menuCollectionView.dataSource = self
+        setConstraint()
+    }
+
+    func setConstraint() {
+        let views: [UIView] = [menuCollectionView, menuDividerView, containerView]
+        views.forEach { v in
+            view.addSubview(v)
+        }
+
+        menuCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(self.menuSize.height + 20)
+        }
+
+        menuDividerView.snp.makeConstraints { make in
+            make.top.equalTo(menuCollectionView.snp.bottom)
+            make.width.equalTo(self.menuSize.width + 30)
+            make.height.equalTo(5)
+            make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(20)
+        }
+
+        containerView.snp.makeConstraints { make in
+            make.top.equalTo(menuDividerView.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        }
     }
 }
 
@@ -30,11 +96,8 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let label = UILabel()
-        label.text = menu[indexPath.row]
-        label.sizeToFit()
 
-        return CGSize(width: label.bounds.width + 30, height: label.bounds.height + 10)
+        return CGSize(width: menuSize.width + 30, height: menuSize.height + 20)
     }
 }
 
@@ -45,6 +108,7 @@ extension ViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCollectionViewCell.identifier, for: indexPath) as? MenuCollectionViewCell else { return UICollectionViewCell() }
+        print(menu[indexPath.row])
 
         cell.setCell(menu: menu[indexPath.row])
         return cell

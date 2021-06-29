@@ -10,11 +10,23 @@ import UIKit
 class MenuCollectionViewCell: UICollectionViewCell {
     static let identifier = "MenuCollectionViewCell"
 
-    @IBOutlet var menuTitle: UILabel!
+    private let menuTitle: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        label.textColor = .black
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+        return label
+    }()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        contentView.addSubview(menuTitle)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     func setCell(menu: String) {
@@ -22,5 +34,17 @@ class MenuCollectionViewCell: UICollectionViewCell {
         menuTitle.sizeToFit()
 
         menuTitle.font = .systemFont(ofSize: 18)
+    }
+
+    func setConstraint() {
+        menuTitle.snp.updateConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setConstraint()
     }
 }

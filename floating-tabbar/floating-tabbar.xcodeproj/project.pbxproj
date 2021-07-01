@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D4CF01E65E1513BD36C7776 /* Pods_floating_tabbar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C81F3C21692BCA3D071813CE /* Pods_floating_tabbar.framework */; };
 		AB5AF73C26887EFF001D3CD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AF73B26887EFF001D3CD1 /* AppDelegate.swift */; };
 		AB5AF73E26887EFF001D3CD1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AF73D26887EFF001D3CD1 /* SceneDelegate.swift */; };
 		AB5AF74026887EFF001D3CD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AF73F26887EFF001D3CD1 /* ViewController.swift */; };
@@ -14,6 +15,12 @@
 		AB5AF74526887F03001D3CD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB5AF74426887F03001D3CD1 /* Assets.xcassets */; };
 		AB5AF74826887F03001D3CD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB5AF74626887F03001D3CD1 /* LaunchScreen.storyboard */; };
 		AB5AF75026887F83001D3CD1 /* RoundedTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AF74F26887F83001D3CD1 /* RoundedTabBarController.swift */; };
+		ABB24E40268DE722006FEE57 /* FloatingBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB24E3F268DE722006FEE57 /* FloatingBarView.swift */; };
+		ABB24E42268DEB5E006FEE57 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB24E41268DEB5E006FEE57 /* CustomTabBarController.swift */; };
+		ABB24E45268DED28006FEE57 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB24E44268DED28006FEE57 /* HomeViewController.swift */; };
+		ABB24E47268DED45006FEE57 /* RecycleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB24E46268DED45006FEE57 /* RecycleViewController.swift */; };
+		ABB24E49268DED6E006FEE57 /* StorageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB24E48268DED6E006FEE57 /* StorageViewController.swift */; };
+		ABB24E4C268DED8B006FEE57 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB24E4B268DED8B006FEE57 /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +33,15 @@
 		AB5AF74726887F03001D3CD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB5AF74926887F03001D3CD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB5AF74F26887F83001D3CD1 /* RoundedTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTabBarController.swift; sourceTree = "<group>"; };
+		ABB24E3F268DE722006FEE57 /* FloatingBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingBarView.swift; sourceTree = "<group>"; };
+		ABB24E41268DEB5E006FEE57 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		ABB24E44268DED28006FEE57 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "floating-tabbar/CustomTabBar/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
+		ABB24E46268DED45006FEE57 /* RecycleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleViewController.swift; sourceTree = "<group>"; };
+		ABB24E48268DED6E006FEE57 /* StorageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageViewController.swift; sourceTree = "<group>"; };
+		ABB24E4B268DED8B006FEE57 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		C2B2B72C9B34A34E5FDC6A16 /* Pods-floating-tabbar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-floating-tabbar.debug.xcconfig"; path = "Target Support Files/Pods-floating-tabbar/Pods-floating-tabbar.debug.xcconfig"; sourceTree = "<group>"; };
+		C81F3C21692BCA3D071813CE /* Pods_floating_tabbar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_floating_tabbar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8C9D71BFA356E2DB79E4981 /* Pods-floating-tabbar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-floating-tabbar.release.xcconfig"; path = "Target Support Files/Pods-floating-tabbar/Pods-floating-tabbar.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +49,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D4CF01E65E1513BD36C7776 /* Pods_floating_tabbar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		09165B3283E4E68FE55F1291 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C81F3C21692BCA3D071813CE /* Pods_floating_tabbar.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		66C83E069ECA52DA1ADAEDAA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C2B2B72C9B34A34E5FDC6A16 /* Pods-floating-tabbar.debug.xcconfig */,
+				F8C9D71BFA356E2DB79E4981 /* Pods-floating-tabbar.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		AB5AF72F26887EFF001D3CD1 = {
 			isa = PBXGroup;
 			children = (
 				AB5AF73A26887EFF001D3CD1 /* floating-tabbar */,
 				AB5AF73926887EFF001D3CD1 /* Products */,
+				66C83E069ECA52DA1ADAEDAA /* Pods */,
+				09165B3283E4E68FE55F1291 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +94,9 @@
 		AB5AF73A26887EFF001D3CD1 /* floating-tabbar */ = {
 			isa = PBXGroup;
 			children = (
+				ABB24E43268DECFC006FEE57 /* ViewController */,
+				AB5AF752268A0556001D3CD1 /* CustomTabBar */,
+				AB5AF751268A0533001D3CD1 /* TabBar */,
 				AB5AF73B26887EFF001D3CD1 /* AppDelegate.swift */,
 				AB5AF73D26887EFF001D3CD1 /* SceneDelegate.swift */,
 				AB5AF73F26887EFF001D3CD1 /* ViewController.swift */,
@@ -65,9 +104,36 @@
 				AB5AF74426887F03001D3CD1 /* Assets.xcassets */,
 				AB5AF74626887F03001D3CD1 /* LaunchScreen.storyboard */,
 				AB5AF74926887F03001D3CD1 /* Info.plist */,
-				AB5AF74F26887F83001D3CD1 /* RoundedTabBarController.swift */,
 			);
 			path = "floating-tabbar";
+			sourceTree = "<group>";
+		};
+		AB5AF751268A0533001D3CD1 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				AB5AF74F26887F83001D3CD1 /* RoundedTabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		AB5AF752268A0556001D3CD1 /* CustomTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				ABB24E3F268DE722006FEE57 /* FloatingBarView.swift */,
+				ABB24E41268DEB5E006FEE57 /* CustomTabBarController.swift */,
+			);
+			path = CustomTabBar;
+			sourceTree = "<group>";
+		};
+		ABB24E43268DECFC006FEE57 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				ABB24E44268DED28006FEE57 /* HomeViewController.swift */,
+				ABB24E46268DED45006FEE57 /* RecycleViewController.swift */,
+				ABB24E48268DED6E006FEE57 /* StorageViewController.swift */,
+				ABB24E4B268DED8B006FEE57 /* SettingViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,9 +143,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB5AF74C26887F03001D3CD1 /* Build configuration list for PBXNativeTarget "floating-tabbar" */;
 			buildPhases = (
+				4A07236848970654B421CBFF /* [CP] Check Pods Manifest.lock */,
 				AB5AF73426887EFF001D3CD1 /* Sources */,
 				AB5AF73526887EFF001D3CD1 /* Frameworks */,
 				AB5AF73626887EFF001D3CD1 /* Resources */,
+				69D49EBEE41AD5CB6B6F1D25 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -135,6 +203,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4A07236848970654B421CBFF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-floating-tabbar-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69D49EBEE41AD5CB6B6F1D25 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-floating-tabbar/Pods-floating-tabbar-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-floating-tabbar/Pods-floating-tabbar-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-floating-tabbar/Pods-floating-tabbar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AB5AF73426887EFF001D3CD1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -142,8 +252,14 @@
 			files = (
 				AB5AF74026887EFF001D3CD1 /* ViewController.swift in Sources */,
 				AB5AF75026887F83001D3CD1 /* RoundedTabBarController.swift in Sources */,
+				ABB24E42268DEB5E006FEE57 /* CustomTabBarController.swift in Sources */,
 				AB5AF73C26887EFF001D3CD1 /* AppDelegate.swift in Sources */,
+				ABB24E47268DED45006FEE57 /* RecycleViewController.swift in Sources */,
+				ABB24E4C268DED8B006FEE57 /* SettingViewController.swift in Sources */,
+				ABB24E40268DE722006FEE57 /* FloatingBarView.swift in Sources */,
+				ABB24E45268DED28006FEE57 /* HomeViewController.swift in Sources */,
 				AB5AF73E26887EFF001D3CD1 /* SceneDelegate.swift in Sources */,
+				ABB24E49268DED6E006FEE57 /* StorageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +403,7 @@
 		};
 		AB5AF74D26887F03001D3CD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2B2B72C9B34A34E5FDC6A16 /* Pods-floating-tabbar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -306,6 +423,7 @@
 		};
 		AB5AF74E26887F03001D3CD1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8C9D71BFA356E2DB79E4981 /* Pods-floating-tabbar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

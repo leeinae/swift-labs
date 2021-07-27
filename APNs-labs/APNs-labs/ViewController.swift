@@ -21,8 +21,10 @@ class ViewController: UIViewController {
     func requestSendNotification(seconds: Double) {
         let content = UNMutableNotificationContent()
         content.title = "Apple Push Notification ❤️‍🔥"
+        content.subtitle = "우와!"
         content.body = "드디어 푸시 알림을 해보는 .. 그런거죠"
         content.userInfo = ["targetScene": "splash"]
+        content.badge = 1 
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: seconds, repeats: false)
 

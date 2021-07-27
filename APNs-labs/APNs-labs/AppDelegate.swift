@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UNUserNotificationCenter.current().delegate = self
 
-        let notificationOptions = UNAuthorizationOptions(arrayLiteral: [.alert, .badge, .sound])
+        let notificationOptions = UNAuthorizationOptions(arrayLiteral: [.alert, .badge, .sound, .provisional])
 
         /// 알람 권한 요청
         UNUserNotificationCenter.current().requestAuthorization(options: notificationOptions) { _, error in
@@ -44,7 +44,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .badge, .sound])
     }
-    
+
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         completionHandler()
     }

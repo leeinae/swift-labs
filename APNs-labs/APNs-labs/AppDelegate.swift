@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UNUserNotificationCenter.current().delegate = self
 
-        let notificationOptions = UNAuthorizationOptions(arrayLiteral: [.alert, .badge, .sound, .provisional])
+        let notificationOptions = UNAuthorizationOptions(arrayLiteral: [.alert, .badge, .sound])
 
         /// 알람 권한 요청
         UNUserNotificationCenter.current().requestAuthorization(options: notificationOptions) { _, error in
@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print(#function, error)
             }
         }
+        application.registerForRemoteNotifications()
 
         return true
     }
@@ -41,11 +42,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
+    /// foreground 상태일 때 push 알림 받음
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert, .badge, .sound])
+        completionHandler([.list, .badge, .sound, .banner])
     }
 
+    /// background일 때
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        UIApplication.shared.applicationIconBadgeNumber += 1
         completionHandler()
     }
 }

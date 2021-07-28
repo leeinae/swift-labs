@@ -48,12 +48,14 @@ class ViewController: UIViewController {
         dateContent.body = "혹시 할 일을 미루고 있지는 않나요? 🤔"
         dateContent.sound = UNNotificationSound.default
         dateContent.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
+        dateContent.summaryArgument = "summary ㅋㅋ"
+        dateContent.summaryArgumentCount = 40
 
         var dateComponents = DateComponents()
         dateComponents.calendar = Calendar.current
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
-        let request = UNNotificationRequest(identifier: "WATER", content: dateContent, trigger: trigger)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: dateContent, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
 

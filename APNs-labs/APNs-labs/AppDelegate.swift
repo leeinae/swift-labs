@@ -5,6 +5,7 @@
 //  Created by inae Lee on 2021/07/27.
 //
 
+import Firebase
 import UIKit
 
 @main
@@ -22,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         application.registerForRemoteNotifications()
+        FirebaseApp.configure()
 
         return true
     }

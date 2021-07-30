@@ -48,12 +48,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
     /// foreground 상태일 때 push 알림 받음
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo
+        print(userInfo, "👅")
+        
+        /// 애널리틱스에 전달
+        Messaging.messaging().appDidReceiveMessage(userInfo)
         completionHandler([.list, .badge, .sound, .banner])
     }
 
     /// background일 때
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         UIApplication.shared.applicationIconBadgeNumber += 1
+
+        let userInfo = response.notification.request.content.userInfo
+        print(userInfo, "👅")
+        
+        Messaging.messaging().appDidReceiveMessage(userInfo)
         completionHandler()
     }
 }
@@ -75,5 +85,19 @@ extension AppDelegate: MessagingDelegate {
 //            object: nil,
 //            userInfo: dataDict
 //        )
+    }
+
+    /// 앱이 백그라운드에 있는 동안 notification을 수신하는 경우, 사용자가 알림을 탭해 앱을 런칭할때까지 이 콜백이 실행되지 않음.
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print(userInfo, "💬")
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
+
+    /// @apnsToken: application delegate로부터 받은 APNs Token을 설정하는데 사용됨.
+    /// FIRM 메시징은 method swizzling을 사용해 APNs Token이 자동으로 설정되도록 함. FirebaseAppDelegateProxyEnabled를 NO로 설정한 경우 swizzling을 허용하지 않는 경우 해당 메소드에서 APNs Token을 수동으로 설정한다.
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
     }
 }

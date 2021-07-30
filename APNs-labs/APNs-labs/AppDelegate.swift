@@ -12,7 +12,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        UNUserNotificationCenter.current().delegate = self
 
         let notificationOptions = UNAuthorizationOptions(arrayLiteral: [.alert, .badge, .sound])
 
@@ -24,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         application.registerForRemoteNotifications()
         FirebaseApp.configure()
+
+        UNUserNotificationCenter.current().delegate = self
+        Messaging.messaging().delegate = self
 
         return true
     }
@@ -53,5 +55,25 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         UIApplication.shared.applicationIconBadgeNumber += 1
         completionHandler()
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+    /// 메시지 대리자 설정
+    func applicationDidFinishLaunching(_ application: UIApplication) {
+        print("applicationDidFinishLaunching")
+    }
+
+    /// 현재 등록 토큰 가져오기 (갱신 시 알림 받기)
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print(fcmToken, "🥺")
+
+        /// 서버로 토큰 등록
+//        let dataDict: [String: String] = ["token": fcmToken ?? ""]
+//        NotificationCenter.default.post(
+//            name: Notification.Name("FCMToken"),
+//            object: nil,
+//            userInfo: dataDict
+//        )
     }
 }

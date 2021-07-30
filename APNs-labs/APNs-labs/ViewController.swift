@@ -16,9 +16,9 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        requestSendNotification(seconds: 3)
-        addTimeTrigger()
-        addDateTimeTrigger()
+//        requestSendNotification(seconds: 3)
+//        addTimeTrigger()
+//        addDateTimeTrigger()
     }
 
     /// 알림 전송

@@ -16,9 +16,9 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        requestSendNotification(seconds: 3)
-//        addTimeTrigger()
-//        addDateTimeTrigger()
+        requestSendNotification(seconds: 3)
+        addTimeTrigger()
+        addDateTimeTrigger()
     }
 
     /// 알림 전송
@@ -47,7 +47,8 @@ class ViewController: UIViewController {
         dateContent.title = "정신 차리기!"
         dateContent.body = "혹시 할 일을 미루고 있지는 않나요? 🤔"
         dateContent.sound = UNNotificationSound.default
-        dateContent.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
+        UIApplication.shared.applicationIconBadgeNumber += 1
+        dateContent.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber)
         dateContent.summaryArgument = "summary ㅋㅋ"
         dateContent.summaryArgumentCount = 40
 

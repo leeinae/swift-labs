@@ -12,11 +12,68 @@ import UIKit
 class ViewController: UIViewController {
     let calendar = FSCalendar()
 
+    let prevButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        button.addTarget(self, action: #selector(didTapPrevButton(_:)), for: .touchUpInside)
+
+        return button
+    }()
+
+    let nextButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
+        button.addTarget(self, action: #selector(didTapNextButton(_:)), for: .touchUpInside)
+
+        return button
+    }()
+
+    lazy var calendarHeaderLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textAlignment = .center
+
+        return label
+    }()
+
+    lazy var dateFormatter: DateFormatter = {
+        let dateformatter = DateFormatter()
+        dateformatter.locale = Locale(identifier: "ko_KR")
+        dateformatter.dateFormat = "M월\nyyyy"
+
+        return dateformatter
+    }()
+
+    var currPage = Date()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setCalendar()
         setConstraints()
+    }
+
+    // MARK: - Actions
+
+    @objc
+    func didTapNextButton(_ sender: UIButton) {
+        didChangeCalendarPage(at: 1)
+    }
+
+    @objc
+    func didTapPrevButton(_ sender: UIButton) {
+        didChangeCalendarPage(at: -1)
+    }
+
+    // MARK: - Methods
+
+    func didChangeCalendarPage(at page: Int) {
+        let cal = Calendar.current
+        var dateComponents = DateComponents()
+        dateComponents.month = page
+
+        currPage = cal.date(byAdding: dateComponents, to: currPage) ?? Date()
+        calendar.setCurrentPage(currPage, animated: true)
     }
 
     func setCalendar() {
@@ -27,7 +84,7 @@ class ViewController: UIViewController {
         calendar.register(CustomCalendarCell.self, forCellReuseIdentifier: String(describing: CustomCalendarCell.self))
 
         /// 요일 한글 변환
-        calendar.locale = Locale(identifier: "ko_KR ")
+        calendar.locale = Locale(identifier: "ko_KR")
 
         /// 날짜 선택
         calendar.allowsMultipleSelection = true
@@ -47,13 +104,33 @@ class ViewController: UIViewController {
         calendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 25)
         calendar.appearance.headerDateFormat = "M월 YYYY년"
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
+        calendar.headerHeight = 0
+
+        calendarHeaderLabel.text = dateFormatter.string(from: calendar.currentPage)
     }
 
     func setConstraints() {
-        view.addSubview(calendar)
+        [nextButton, prevButton, calendarHeaderLabel, calendar].forEach { component in
+            view.addSubview(component)
+        }
+
+        nextButton.snp.makeConstraints { make in
+            make.leading.equalTo(calendarHeaderLabel.snp.trailing).offset(20)
+            make.centerY.equalTo(calendarHeaderLabel.snp.centerY)
+        }
+
+        prevButton.snp.makeConstraints { make in
+            make.trailing.equalTo(calendarHeaderLabel.snp.leading).offset(-20)
+            make.centerY.equalTo(calendarHeaderLabel.snp.centerY)
+        }
+
+        calendarHeaderLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(28)
+            make.centerX.equalToSuperview()
+        }
 
         calendar.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(100)
+            make.top.equalTo(calendarHeaderLabel.snp.bottom).offset(30)
             make.leading.trailing.equalToSuperview().inset(30)
             make.height.equalTo(300)
         }
@@ -93,5 +170,9 @@ extension ViewController: FSCalendarDelegate {
 
     func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
         configure(cell: cell, for: date, at: monthPosition)
+    }
+
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        calendarHeaderLabel.text = dateFormatter.string(from: calendar.currentPage)
     }
 }

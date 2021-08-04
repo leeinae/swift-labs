@@ -20,8 +20,11 @@ class ViewController: UIViewController {
     }
 
     func setCalendar() {
+        calendar.scope = .month
         calendar.dataSource = self
         calendar.delegate = self
+
+        calendar.register(CustomCalendarCell.self, forCellReuseIdentifier: String(describing: CustomCalendarCell.self))
 
         /// 요일 한글 변환
         calendar.locale = Locale(identifier: "ko_KR ")
@@ -38,7 +41,7 @@ class ViewController: UIViewController {
         /// hide top, bottom border
         calendar.clipsToBounds = true
 
-//        calendar.today = nil /// 오늘 표시 숨기기
+        calendar.today = nil /// 오늘 표시 숨기기
 
         /// Header
         calendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 25)
@@ -55,6 +58,12 @@ class ViewController: UIViewController {
             make.height.equalTo(300)
         }
     }
+
+    func configure(cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {
+        guard let customCell = cell as? CustomCalendarCell else { return }
+        
+        customCell.iconImage.isHidden = !Calendar(identifier: .gregorian).isDate(date, inSameDayAs: Date())
+    }
 }
 
 /// 날짜 아래 이미지 띄우기
@@ -67,5 +76,21 @@ extension ViewController: FSCalendarDataSource {
 extension ViewController: FSCalendarDelegateAppearance {
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, imageOffsetFor date: Date) -> CGPoint {
         CGPoint(x: .zero, y: -5)
+    }
+}
+
+extension ViewController: FSCalendarDelegate {
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        print(calendar.selectedDate)
+    }
+
+    func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
+        let cell = calendar.dequeueReusableCell(withIdentifier: String(describing: CustomCalendarCell.self), for: date, at: position)
+
+        return cell
+    }
+
+    func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
+        configure(cell: cell, for: date, at: monthPosition)
     }
 }

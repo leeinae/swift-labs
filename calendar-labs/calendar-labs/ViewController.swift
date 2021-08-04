@@ -61,8 +61,9 @@ class ViewController: UIViewController {
 
     func configure(cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {
         guard let customCell = cell as? CustomCalendarCell else { return }
-        
+
         customCell.iconImage.isHidden = !Calendar(identifier: .gregorian).isDate(date, inSameDayAs: Date())
+        customCell.titleLabel.isHidden = Calendar(identifier: .gregorian).isDate(date, inSameDayAs: Date())
     }
 }
 

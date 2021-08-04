@@ -29,6 +29,7 @@ class CustomCalendarCell: FSCalendarCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        iconImage.frame = contentView.frame
+        iconImage.frame = CGRect(origin: .zero, size: CGSize(width: titleLabel.frame.height, height: titleLabel.frame.height))
+        iconImage.center.x = contentView.center.x
     }
 }

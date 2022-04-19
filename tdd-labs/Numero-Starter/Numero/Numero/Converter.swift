@@ -26,15 +26,20 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-enum Roman: Int {
-    case I = 1
-    case IV = 4
-    case V = 5
-    case IX = 9
-    case X = 10
-}
-
-let numberSymbols: [(number: Int, symbol: String)] = [(10, "X"), (9, "IX"), (5, "V"), (4, "IV"), (1, "I")]
+let numberSymbols: [(number: Int, symbol: String)] =
+    [(1000, "M"),
+     (900, "CM"),
+     (500, "D"),
+     (400, "CD"),
+     (100, "C"),
+     (90, "XC"),
+     (50, "L"),
+     (40, "XL"),
+     (10, "X"),
+     (9, "IX"),
+     (5, "V"),
+     (4, "IV"),
+     (1, "I")]
 
 class Converter {
     func convert(_ number: Int) -> String {

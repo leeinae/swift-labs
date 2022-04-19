@@ -26,8 +26,28 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
+enum Roman: Int {
+    case I = 1
+    case IV = 4
+    case V = 5
+    case IX = 9
+    case X = 10
+}
+
+let numberSymbols: [(number: Int, symbol: String)] = [(10, "X"), (9, "IX"), (5, "V"), (4, "IV"), (1, "I")]
+
 class Converter {
-    func convert(_ num: Int) -> String {
-        String(repeating: "I", count: num)
+    func convert(_ number: Int) -> String {
+        var localNumber = number
+        var result = ""
+
+        for item in numberSymbols {
+            while localNumber >= item.number {
+                result += item.symbol
+                localNumber = localNumber - item.number
+            }
+        }
+
+        return result
     }
 }

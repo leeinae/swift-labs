@@ -16,6 +16,7 @@
 		3052E8862010600D00F6F30B /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3052E8852010600D00F6F30B /* Converter.swift */; };
 		3052E8882010950800F6F30B /* GameDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3052E8872010950800F6F30B /* GameDoneViewController.swift */; };
 		30833EE42014681A000488C0 /* Shuffle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30833EE32014681A000488C0 /* Shuffle.swift */; };
+		4F00C2C5280D59A000F38D8B /* ConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F00C2C4280D59A000F38D8B /* ConverterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		3052E8852010600D00F6F30B /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		3052E8872010950800F6F30B /* GameDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDoneViewController.swift; sourceTree = "<group>"; };
 		30833EE32014681A000488C0 /* Shuffle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shuffle.swift; sourceTree = "<group>"; };
+		4F00C2C4280D59A000F38D8B /* ConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				3052E86C201040F500F6F30B /* Info.plist */,
+				4F00C2C4280D59A000F38D8B /* ConverterTests.swift */,
 			);
 			path = NumeroTests;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 					};
 					3052E865201040F500F6F30B = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 1320;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3052E851201040F500F6F30B;
 					};
@@ -221,6 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F00C2C5280D59A000F38D8B /* ConverterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,7 +368,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = G7SD8523Y3;
 				INFOPLIST_FILE = Numero/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.Numero;
@@ -380,7 +385,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = G7SD8523Y3;
 				INFOPLIST_FILE = Numero/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.Numero;
@@ -396,14 +401,16 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = G7SD8523Y3;
 				INFOPLIST_FILE = NumeroTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.NumeroTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Numero.app/Numero";
@@ -415,9 +422,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = G7SD8523Y3;
 				INFOPLIST_FILE = NumeroTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.NumeroTests;

@@ -27,5 +27,7 @@
 /// THE SOFTWARE.
 
 class Converter {
-  
+    func convert(_ num: Int) -> String {
+        String(repeating: "I", count: num)
+    }
 }

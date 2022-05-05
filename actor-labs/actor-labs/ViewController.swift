@@ -22,5 +22,7 @@ class ViewController: UIViewController {
         
         print(await accountA.balance)
         print(await accountB.balance)
+        
+        await accountB.checkBalance(account: accountA)
     }
 }

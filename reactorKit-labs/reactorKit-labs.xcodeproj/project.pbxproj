@@ -16,8 +16,10 @@
 		CDBD36422878543800F6E91C /* reactorKit_labsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBD36412878543800F6E91C /* reactorKit_labsUITests.swift */; };
 		CDBD36442878543800F6E91C /* reactorKit_labsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBD36432878543800F6E91C /* reactorKit_labsUITestsLaunchTests.swift */; };
 		CDBD36522878563E00F6E91C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CDBD36512878563E00F6E91C /* SnapKit */; };
-		CDBD36552878569300F6E91C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CDBD36542878569300F6E91C /* RxSwift */; };
 		CDBD3658287856A900F6E91C /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = CDBD3657287856A900F6E91C /* ReactorKit */; };
+		CDBD365A2878572400F6E91C /* ViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBD36592878572400F6E91C /* ViewReactor.swift */; };
+		CDBD365D28785D8500F6E91C /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CDBD365C28785D8500F6E91C /* RxCocoa */; };
+		CDBD365F28785D8500F6E91C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CDBD365E28785D8500F6E91C /* RxSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,7 @@
 		CDBD363D2878543800F6E91C /* reactorKit-labsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "reactorKit-labsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBD36412878543800F6E91C /* reactorKit_labsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reactorKit_labsUITests.swift; sourceTree = "<group>"; };
 		CDBD36432878543800F6E91C /* reactorKit_labsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reactorKit_labsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CDBD36592878572400F6E91C /* ViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewReactor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +60,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDBD36552878569300F6E91C /* RxSwift in Frameworks */,
+				CDBD365D28785D8500F6E91C /* RxCocoa in Frameworks */,
 				CDBD3658287856A900F6E91C /* ReactorKit in Frameworks */,
+				CDBD365F28785D8500F6E91C /* RxSwift in Frameworks */,
 				CDBD36522878563E00F6E91C /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,6 +113,7 @@
 				CDBD36292878543800F6E91C /* Assets.xcassets */,
 				CDBD362B2878543800F6E91C /* LaunchScreen.storyboard */,
 				CDBD362E2878543800F6E91C /* Info.plist */,
+				CDBD36592878572400F6E91C /* ViewReactor.swift */,
 			);
 			path = "reactorKit-labs";
 			sourceTree = "<group>";
@@ -148,8 +153,9 @@
 			name = "reactorKit-labs";
 			packageProductDependencies = (
 				CDBD36512878563E00F6E91C /* SnapKit */,
-				CDBD36542878569300F6E91C /* RxSwift */,
 				CDBD3657287856A900F6E91C /* ReactorKit */,
+				CDBD365C28785D8500F6E91C /* RxCocoa */,
+				CDBD365E28785D8500F6E91C /* RxSwift */,
 			);
 			productName = "reactorKit-labs";
 			productReference = CDBD361D2878542F00F6E91C /* reactorKit-labs.app */;
@@ -225,8 +231,8 @@
 			mainGroup = CDBD36142878542F00F6E91C;
 			packageReferences = (
 				CDBD36502878563E00F6E91C /* XCRemoteSwiftPackageReference "SnapKit" */,
-				CDBD36532878569300F6E91C /* XCRemoteSwiftPackageReference "RxSwift" */,
 				CDBD3656287856A900F6E91C /* XCRemoteSwiftPackageReference "ReactorKit" */,
+				CDBD365B28785D8500F6E91C /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = CDBD361E2878542F00F6E91C /* Products */;
 			projectDirPath = "";
@@ -273,6 +279,7 @@
 				CDBD36252878542F00F6E91C /* ViewController.swift in Sources */,
 				CDBD36212878542F00F6E91C /* AppDelegate.swift in Sources */,
 				CDBD36232878542F00F6E91C /* SceneDelegate.swift in Sources */,
+				CDBD365A2878572400F6E91C /* ViewReactor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,20 +625,20 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		CDBD36532878569300F6E91C /* XCRemoteSwiftPackageReference "RxSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
-			};
-		};
 		CDBD3656287856A900F6E91C /* XCRemoteSwiftPackageReference "ReactorKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactorKit/ReactorKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 3.0.0;
+			};
+		};
+		CDBD365B28785D8500F6E91C /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -642,15 +649,20 @@
 			package = CDBD36502878563E00F6E91C /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		CDBD36542878569300F6E91C /* RxSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CDBD36532878569300F6E91C /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxSwift;
-		};
 		CDBD3657287856A900F6E91C /* ReactorKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CDBD3656287856A900F6E91C /* XCRemoteSwiftPackageReference "ReactorKit" */;
 			productName = ReactorKit;
+		};
+		CDBD365C28785D8500F6E91C /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CDBD365B28785D8500F6E91C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		CDBD365E28785D8500F6E91C /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CDBD365B28785D8500F6E91C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

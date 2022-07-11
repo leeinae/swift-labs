@@ -84,6 +84,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB753DD2287C67DE00554352 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				CDBD36202878542F00F6E91C /* AppDelegate.swift */,
+				CDBD36222878542F00F6E91C /* SceneDelegate.swift */,
+				CDBD36242878542F00F6E91C /* ViewController.swift */,
+				CDBD36592878572400F6E91C /* ViewReactor.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		AB753DD3287C67E800554352 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CDBD36292878543800F6E91C /* Assets.xcassets */,
+				CDBD362B2878543800F6E91C /* LaunchScreen.storyboard */,
+				CDBD362E2878543800F6E91C /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		CDBD36142878542F00F6E91C = {
 			isa = PBXGroup;
 			children = (
@@ -107,13 +128,8 @@
 		CDBD361F2878542F00F6E91C /* reactorKit-labs */ = {
 			isa = PBXGroup;
 			children = (
-				CDBD36202878542F00F6E91C /* AppDelegate.swift */,
-				CDBD36222878542F00F6E91C /* SceneDelegate.swift */,
-				CDBD36242878542F00F6E91C /* ViewController.swift */,
-				CDBD36292878543800F6E91C /* Assets.xcassets */,
-				CDBD362B2878543800F6E91C /* LaunchScreen.storyboard */,
-				CDBD362E2878543800F6E91C /* Info.plist */,
-				CDBD36592878572400F6E91C /* ViewReactor.swift */,
+				AB753DD3287C67E800554352 /* Resources */,
+				AB753DD2287C67DE00554352 /* Source */,
 			);
 			path = "reactorKit-labs";
 			sourceTree = "<group>";
@@ -378,7 +394,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -433,7 +449,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -450,9 +466,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VU73N5PK94;
+				DEVELOPMENT_TEAM = G7SD8523Y3;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "reactorKit-labs/Info.plist";
+				INFOPLIST_FILE = "reactorKit-labs/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -463,7 +479,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.inae-lee.reactorKit-labs.reactorKit-labs";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.inae-lee.reactorKit-labs";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -478,9 +494,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VU73N5PK94;
+				DEVELOPMENT_TEAM = G7SD8523Y3;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "reactorKit-labs/Info.plist";
+				INFOPLIST_FILE = "reactorKit-labs/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -491,7 +507,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.inae-lee.reactorKit-labs.reactorKit-labs";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.inae-lee.reactorKit-labs";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

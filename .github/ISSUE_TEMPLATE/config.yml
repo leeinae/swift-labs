@@ -1,0 +1,62 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug] "
+labels: ["bug"]
+assignees:
+  - leeinae
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: 이메일 주소 남겨주십쇼?
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 버그 설명
+      description: 어떤 버그가 발생했나요?
+      placeholder: 스크롤이 되지 않아요.
+    validations:
+      required: true
+  # - type: dropdown
+  #   id: version
+  #   attributes:
+  #     label: Target Version
+  #     description: iOS 버전 선택
+  #     options:
+  #       - 1.0.2 (Default)
+  #       - 1.0.3 (Edge)
+  #   validations:
+  #     required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: iOS Target version을 선택해주세요.
+      multiple: true
+      options:
+        - 15.0 이상
+        - '15.0'
+        - '14.0'
+        - '13.0'
+        - 13.0 이하
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: 관련된 로그를 남겨주세요.
+      render: shell
+  - type: checkboxes
+    id: real
+    attributes:
+      label: real
+      description: 그냥 시험삼아! 넣어봤는데. 진짜 이슈를 생성하실건가요?!
+      options:
+        - label: Y E S . . .
+          required: true

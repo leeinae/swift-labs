@@ -16,6 +16,10 @@
 		AB9F729E2741358E00F48D88 /* collectionView_iOS15_labsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F729D2741358E00F48D88 /* collectionView_iOS15_labsTests.swift */; };
 		AB9F72A82741358E00F48D88 /* collectionView_iOS15_labsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F72A72741358E00F48D88 /* collectionView_iOS15_labsUITests.swift */; };
 		AB9F72AA2741358E00F48D88 /* collectionView_iOS15_labsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F72A92741358E00F48D88 /* collectionView_iOS15_labsUITestsLaunchTests.swift */; };
+		CDB3474028894F71002BAF9D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CDB3473F28894F71002BAF9D /* SnapKit */; };
+		CDB3474328894FBE002BAF9D /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = CDB3474228894FBE002BAF9D /* Then */; };
+		CDB3474528894FE2002BAF9D /* CompositionalLabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3474428894FE2002BAF9D /* CompositionalLabViewController.swift */; };
+		CDB3474828895360002BAF9D /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3474728895360002BAF9D /* ColorCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,8 @@
 		AB9F72A32741358E00F48D88 /* collectionView-iOS15-labsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "collectionView-iOS15-labsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9F72A72741358E00F48D88 /* collectionView_iOS15_labsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = collectionView_iOS15_labsUITests.swift; sourceTree = "<group>"; };
 		AB9F72A92741358E00F48D88 /* collectionView_iOS15_labsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = collectionView_iOS15_labsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CDB3474428894FE2002BAF9D /* CompositionalLabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionalLabViewController.swift; sourceTree = "<group>"; };
+		CDB3474728895360002BAF9D /* ColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDB3474028894F71002BAF9D /* SnapKit in Frameworks */,
+				CDB3474328894FBE002BAF9D /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +107,7 @@
 		AB9F72852741358D00F48D88 /* collectionView-iOS15-labs */ = {
 			isa = PBXGroup;
 			children = (
+				CDB347462889533D002BAF9D /* Compositional */,
 				AB9F72862741358D00F48D88 /* AppDelegate.swift */,
 				AB9F72882741358D00F48D88 /* SceneDelegate.swift */,
 				AB9F728A2741358D00F48D88 /* ViewController.swift */,
@@ -127,6 +136,15 @@
 			path = "collectionView-iOS15-labsUITests";
 			sourceTree = "<group>";
 		};
+		CDB347462889533D002BAF9D /* Compositional */ = {
+			isa = PBXGroup;
+			children = (
+				CDB3474728895360002BAF9D /* ColorCollectionViewCell.swift */,
+				CDB3474428894FE2002BAF9D /* CompositionalLabViewController.swift */,
+			);
+			path = Compositional;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +161,10 @@
 			dependencies = (
 			);
 			name = "collectionView-iOS15-labs";
+			packageProductDependencies = (
+				CDB3473F28894F71002BAF9D /* SnapKit */,
+				CDB3474228894FBE002BAF9D /* Then */,
+			);
 			productName = "collectionView-iOS15-labs";
 			productReference = AB9F72832741358D00F48D88 /* collectionView-iOS15-labs.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +237,10 @@
 				Base,
 			);
 			mainGroup = AB9F727A2741358D00F48D88;
+			packageReferences = (
+				CDB3473E28894F71002BAF9D /* XCRemoteSwiftPackageReference "SnapKit" */,
+				CDB3474128894FBE002BAF9D /* XCRemoteSwiftPackageReference "Then" */,
+			);
 			productRefGroup = AB9F72842741358D00F48D88 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -258,8 +284,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDB3474828895360002BAF9D /* ColorCollectionViewCell.swift in Sources */,
 				AB9F728B2741358D00F48D88 /* ViewController.swift in Sources */,
 				AB9F72872741358D00F48D88 /* AppDelegate.swift in Sources */,
+				CDB3474528894FE2002BAF9D /* CompositionalLabViewController.swift in Sources */,
 				AB9F72892741358D00F48D88 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -624,6 +652,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CDB3473E28894F71002BAF9D /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		CDB3474128894FBE002BAF9D /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CDB3473F28894F71002BAF9D /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CDB3473E28894F71002BAF9D /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		CDB3474228894FBE002BAF9D /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CDB3474128894FBE002BAF9D /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AB9F727B2741358D00F48D88 /* Project object */;
 }

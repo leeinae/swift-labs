@@ -5,6 +5,7 @@
 //  Created by Devsisters on 2022/08/10.
 //
 
+import ComposableArchitecture
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -13,8 +14,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
+        let counterReducer = Reducer<CounterState, CounterAction, CounterEnvironment> { state, action, env in
+            print(state)
+            print(action)
+            print(env)
+
+            switch action {
+            case .plus:
+                state.count += 1
+                return .none
+            case .minus:
+                state.count -= 1
+                return .none
+            }
+        }
+
+        let viewStore = Store(initialState: CounterState(), reducer: counterReducer, environment: CounterEnvironment())
+
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = ViewController()
+        window?.rootViewController = ViewController(store: viewStore)
         window?.makeKeyAndVisible()
     }
 

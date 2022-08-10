@@ -18,6 +18,8 @@
 		CD8058CD28A388610088E2F2 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CD8058CC28A388610088E2F2 /* ComposableArchitecture */; };
 		CD8058D028A388740088E2F2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CD8058CF28A388740088E2F2 /* SnapKit */; };
 		CD8058D328A388860088E2F2 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = CD8058D228A388860088E2F2 /* Then */; };
+		CD8058D628A38F5E0088E2F2 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CD8058D528A38F5E0088E2F2 /* RxCocoa */; };
+		CD8058D828A38F5E0088E2F2 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CD8058D728A38F5E0088E2F2 /* RxSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 			files = (
 				CD8058CD28A388610088E2F2 /* ComposableArchitecture in Frameworks */,
 				CD8058D328A388860088E2F2 /* Then in Frameworks */,
+				CD8058D828A38F5E0088E2F2 /* RxSwift in Frameworks */,
+				CD8058D628A38F5E0088E2F2 /* RxCocoa in Frameworks */,
 				CD8058D028A388740088E2F2 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,6 +154,8 @@
 				CD8058CC28A388610088E2F2 /* ComposableArchitecture */,
 				CD8058CF28A388740088E2F2 /* SnapKit */,
 				CD8058D228A388860088E2F2 /* Then */,
+				CD8058D528A38F5E0088E2F2 /* RxCocoa */,
+				CD8058D728A38F5E0088E2F2 /* RxSwift */,
 			);
 			productName = "composable-architecture-labs";
 			productReference = CD80589828A387F40088E2F2 /* composable-architecture-labs.app */;
@@ -227,6 +233,7 @@
 				CD8058CB28A388610088E2F2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				CD8058CE28A388730088E2F2 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				CD8058D128A388860088E2F2 /* XCRemoteSwiftPackageReference "Then" */,
+				CD8058D428A38F5E0088E2F2 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = CD80589928A387F40088E2F2 /* Products */;
 			projectDirPath = "";
@@ -632,6 +639,14 @@
 				kind = branch;
 			};
 		};
+		CD8058D428A38F5E0088E2F2 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -649,6 +664,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CD8058D128A388860088E2F2 /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
+		};
+		CD8058D528A38F5E0088E2F2 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD8058D428A38F5E0088E2F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		CD8058D728A38F5E0088E2F2 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD8058D428A38F5E0088E2F2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

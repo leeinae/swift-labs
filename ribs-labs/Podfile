@@ -1,0 +1,24 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'ribs-labs' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for ribs-labs
+  pod 'RIBs', git: 'https://github.com/uber/RIBs.git', branch: 'main', submodules: true
+  pod 'RxSwift', '~> 6.0'
+  pod 'RxCocoa', '~> 6.0'
+  pod 'SnapKit'
+
+
+  target 'ribs-labsTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'ribs-labsUITests' do
+    # Pods for testing
+  end
+
+end

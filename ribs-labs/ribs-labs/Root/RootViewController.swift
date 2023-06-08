@@ -13,15 +13,27 @@ protocol RootPresentableListener: AnyObject {
     /// interactor에 의해 구현됨
 }
 
-final class RootViewController: UIViewController, RootViewControllable, RootPresentable {
+final class RootViewController: UIViewController, RootPresentable {
     weak var listener: RootPresentableListener?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
     }
+}
 
+extension RootViewController: RootViewControllable {
     func present(viewController: ViewControllable) {
         present(viewController.uiviewController, animated: true)
     }
+
+    func dismiss(viewController: ViewControllable) {
+        if presentedViewController == viewController.uiviewController {
+            dismiss(animated: true)
+        }
+    }
+}
+
+extension RootViewController: LoggedInViewControllable {
+
 }

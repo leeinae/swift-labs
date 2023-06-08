@@ -7,7 +7,7 @@
 
 import RIBs
 
-protocol RootInteractable: Interactable, LoggedOutListener {
+protocol RootInteractable: Interactable, LoggedOutListener, LoggedInListener {
     var router: RootRouting? { get set }
     var listener: RootListener? { get set }
 }
@@ -15,20 +15,24 @@ protocol RootInteractable: Interactable, LoggedOutListener {
 protocol RootViewControllable: ViewControllable {
     // view hierarchy를 조절하기 위해 router가 호출하는 메소드 정의
     func present(viewController: ViewControllable)
+    func dismiss(viewController: ViewControllable)
 }
 
 final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>,
     RootRouting
 {
     private let loggedOutBuilder: LoggedOutBuildable
+    private let loggedIntBuilder: LoggedInBuildable
     private var loggedOut: ViewableRouting?
 
     init(
         interactor: RootInteractable,
         viewController: RootViewControllable,
-        loggedOutBuilder: LoggedOutBuildable
+        loggedOutBuilder: LoggedOutBuildable,
+        loggedInBuilder: LoggedInBuildable
     ) {
         self.loggedOutBuilder = loggedOutBuilder
+        loggedIntBuilder = loggedInBuilder
         super.init(
             interactor: interactor,
             viewController: viewController
@@ -46,5 +50,16 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>,
         self.loggedOut = loggedOut
         attachChild(loggedOut)
         viewController.present(viewController: loggedOut.viewControllable)
+    }
+
+    func routeToLoggedIn(player1Name: String, player2Name: String) {
+        if let loggedOut = self.loggedOut {
+            detachChild(loggedOut)
+            viewController.dismiss(viewController: loggedOut.viewControllable)
+            self.loggedOut = nil
+        }
+
+        let loggedIn = loggedIntBuilder.build(withListener: interactor)
+        attachChild(loggedIn)
     }
 }

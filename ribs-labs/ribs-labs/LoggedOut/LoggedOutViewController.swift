@@ -61,7 +61,10 @@ final class LoggedOutViewController: UIViewController, LoggedOutPresentable, Log
         return (player1Field, player2Field)
     }
 
-    private func buildLoginButton(withPlayer1Field player1Field: UITextField, player2Field: UITextField) {
+    private func buildLoginButton(
+        withPlayer1Field player1Field: UITextField,
+        player2Field: UITextField
+    ) {
         let loginButton = UIButton()
         view.addSubview(loginButton)
         loginButton.snp.makeConstraints { maker in

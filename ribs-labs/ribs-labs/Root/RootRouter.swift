@@ -7,6 +7,8 @@
 
 import RIBs
 
+/// LoggedIn RIB의 event를 받기 위해, LoggedIn RIB의 listener로써 interactor를 구성한다.
+/// Root RIB이 Child (LoggedOut, LoggedIn) Builder를 구성할 때 interactor를 listener로 전달하기 때문에, Listener protocol을 준수해야한다.
 protocol RootInteractable: Interactable, LoggedOutListener, LoggedInListener {
     var router: RootRouting? { get set }
     var listener: RootListener? { get set }
@@ -22,9 +24,10 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>,
     RootRouting
 {
     private let loggedOutBuilder: LoggedOutBuildable
-    private let loggedIntBuilder: LoggedInBuildable
+    private let loggedInBuilder: LoggedInBuildable
     private var loggedOut: ViewableRouting?
 
+    /// 새로운 RIB을 연결하려면, router가 build 할 수 있어야 한다.
     init(
         interactor: RootInteractable,
         viewController: RootViewControllable,
@@ -32,7 +35,7 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>,
         loggedInBuilder: LoggedInBuildable
     ) {
         self.loggedOutBuilder = loggedOutBuilder
-        loggedIntBuilder = loggedInBuilder
+        self.loggedInBuilder = loggedInBuilder
         super.init(
             interactor: interactor,
             viewController: viewController
@@ -46,12 +49,13 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>,
     override func didLoad() {
         super.didLoad()
 
-        let loggedOut = loggedOutBuilder.build(withListener: interactor)
-        self.loggedOut = loggedOut
-        attachChild(loggedOut)
-        viewController.present(viewController: loggedOut.viewControllable)
+        routeToLoggedOut()
     }
+}
 
+// MARK: - RootRouting
+
+extension RootRouter {
     func routeToLoggedIn(player1Name: String, player2Name: String) {
         if let loggedOut = self.loggedOut {
             detachChild(loggedOut)
@@ -59,7 +63,16 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>,
             self.loggedOut = nil
         }
 
-        let loggedIn = loggedIntBuilder.build(withListener: interactor)
+        let loggedIn = loggedInBuilder.build(withListener: interactor)
         attachChild(loggedIn)
+    }
+
+    /// LoggedOut RIB의 리스너로 Root RIB의 interactor 사용
+    /// interactor로 전달을 위해, RootInteractable이 LoggedOutListener를 준수해야함
+    func routeToLoggedOut() {
+        let loggedOut = loggedOutBuilder.build(withListener: interactor)
+        self.loggedOut = loggedOut
+        attachChild(loggedOut)
+        viewController.present(viewController: loggedOut.viewControllable)
     }
 }

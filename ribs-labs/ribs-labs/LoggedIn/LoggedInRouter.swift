@@ -12,6 +12,7 @@ protocol LoggedInInteractable: Interactable, OffGameListener {
     var listener: LoggedInListener? { get set }
 }
 
+/// viewless한 RIB을 생성할 때는 해당 RIB이 detach될 때 사용할 수 있는 hook을 제공한다.
 protocol LoggedInViewControllable: ViewControllable {
     func present(viewController: ViewControllable)
     func dismiss(viewController: ViewControllable)
@@ -19,13 +20,13 @@ protocol LoggedInViewControllable: ViewControllable {
 
 final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     private let viewController: LoggedInViewControllable
-    private let offGameBuilder: OffGameBuilder
+    private let offGameBuilder: OffGameBuildable
     private var currentChild: ViewableRouting?
 
     init(
         interactor: LoggedInInteractable,
         viewController: LoggedInViewControllable,
-        offGameBuilder: OffGameBuilder
+        offGameBuilder: OffGameBuildable
     ) {
         self.viewController = viewController
         self.offGameBuilder = offGameBuilder
@@ -38,6 +39,13 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         attachOffGame()
     }
 
+    /// 부모 RIB이 LoggedIn RIB을 detach하려고 할 때, LoggedInInteractor에 의해 호출됨
+    func cleanupViews() {
+        if let currentChild = currentChild {
+            viewController.dismiss(viewController: currentChild.viewControllable)
+        }
+    }
+
     func routeToTicTacToe() {
         ///
     }
@@ -45,13 +53,6 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     func routeToOffGame() {
         detachCurrentChild()
         attachOffGame()
-    }
-
-    /// 부모 RIB이 LoggedIn RIB을 detach하려고 할 때, LoggedInInteractor에 의해 호출됨
-    func cleanupViews() {
-        if let currentChild = currentChild {
-            viewController.dismiss(viewController: currentChild.viewControllable)
-        }
     }
 
     private func attachOffGame() {

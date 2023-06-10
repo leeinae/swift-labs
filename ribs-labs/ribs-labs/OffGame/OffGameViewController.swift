@@ -52,7 +52,7 @@ final class OffGameViewController: UIViewController, OffGamePresentable, OffGame
             maker.leading.trailing.equalTo(self.view).inset(40)
             maker.height.equalTo(100)
         }
-        startButton.setTitle("Start Game", for: .normal)
+        startButton.setTitle("Start Game (OffGame)", for: .normal)
         startButton.setTitleColor(UIColor.white, for: .normal)
         startButton.backgroundColor = UIColor.black
     }

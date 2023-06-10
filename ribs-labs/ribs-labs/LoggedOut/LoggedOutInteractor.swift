@@ -18,7 +18,7 @@ protocol LoggedOutPresentable: Presentable {
 }
 
 protocol LoggedOutListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    // Root RIB에게 login action이 발생했음을 전달
     func didLoginIn(player1Name: String, player2Name: String)
 }
 

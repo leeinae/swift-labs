@@ -42,6 +42,10 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
 
     // MARK: - OffGameListener
 
+    func startTicTacToe() {
+        router?.routeToTicTacToe()
+    }
+
     // MARK: - TicTacToeListener
 
     func gameDidEnd() {

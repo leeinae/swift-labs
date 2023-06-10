@@ -6,17 +6,16 @@
 //
 
 import RIBs
+import RxCocoa
 import RxSwift
 import UIKit
-
-import RIBs
 import SnapKit
-import UIKit
 
 protocol OffGamePresentableListener: AnyObject {
     // TODO: Declare properties and methods that the view controller can invoke to perform
     // business logic, such as signIn(). This protocol is implemented by the corresponding
     // interactor class.
+    func startGame()
 }
 
 final class OffGameViewController: UIViewController, OffGamePresentable, OffGameViewControllable {
@@ -25,6 +24,7 @@ final class OffGameViewController: UIViewController, OffGamePresentable, OffGame
     }
 
     weak var listener: OffGamePresentableListener?
+    private let disposeBag = DisposeBag()
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -55,5 +55,10 @@ final class OffGameViewController: UIViewController, OffGamePresentable, OffGame
         startButton.setTitle("Start Game (OffGame)", for: .normal)
         startButton.setTitleColor(UIColor.white, for: .normal)
         startButton.backgroundColor = UIColor.black
+        startButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.listener?.startGame()
+            })
+            .disposed(by: disposeBag)
     }
 }

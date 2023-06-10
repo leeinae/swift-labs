@@ -36,6 +36,8 @@
 		ABE5F2F62A34751F002F57F9 /* TicTacToeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5F2F22A34751F002F57F9 /* TicTacToeViewController.swift */; };
 		ABE5F2F72A34751F002F57F9 /* TicTacToeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5F2F32A34751F002F57F9 /* TicTacToeBuilder.swift */; };
 		ABE5F2F82A34751F002F57F9 /* TicTacToeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5F2F42A34751F002F57F9 /* TicTacToeInteractor.swift */; };
+		ABE5F2FB2A34A7FB002F57F9 /* ScoreStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5F2FA2A34A7FB002F57F9 /* ScoreStream.swift */; };
+		ABE5F2FD2A34B383002F57F9 /* PlayerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5F2FC2A34B383002F57F9 /* PlayerType.swift */; };
 		ABE6DD732A2B40F40029417E /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE6DD702A2B40F40029417E /* RootRouter.swift */; };
 		ABE6DD742A2B40F40029417E /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE6DD712A2B40F40029417E /* RootBuilder.swift */; };
 		ABE6DD752A2B40F40029417E /* RootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE6DD722A2B40F40029417E /* RootInteractor.swift */; };
@@ -100,6 +102,8 @@
 		ABE5F2F22A34751F002F57F9 /* TicTacToeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeViewController.swift; sourceTree = "<group>"; };
 		ABE5F2F32A34751F002F57F9 /* TicTacToeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeBuilder.swift; sourceTree = "<group>"; };
 		ABE5F2F42A34751F002F57F9 /* TicTacToeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeInteractor.swift; sourceTree = "<group>"; };
+		ABE5F2FA2A34A7FB002F57F9 /* ScoreStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreStream.swift; sourceTree = "<group>"; };
+		ABE5F2FC2A34B383002F57F9 /* PlayerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerType.swift; sourceTree = "<group>"; };
 		ABE6DD702A2B40F40029417E /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		ABE6DD712A2B40F40029417E /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
 		ABE6DD722A2B40F40029417E /* RootInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootInteractor.swift; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 		AB4461312A2B332100091323 /* ribs-labs */ = {
 			isa = PBXGroup;
 			children = (
+				ABE5F2F92A34A7F2002F57F9 /* Models */,
 				ABE5F2E82A347329002F57F9 /* TicTacToe */,
 				AB7EBC7F2A30DB8900E5E0CD /* OffGame */,
 				AB7EBC702A2C83EC00E5E0CD /* LoggedIn */,
@@ -244,6 +249,15 @@
 				ABE5F2F42A34751F002F57F9 /* TicTacToeInteractor.swift */,
 			);
 			path = TicTacToe;
+			sourceTree = "<group>";
+		};
+		ABE5F2F92A34A7F2002F57F9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ABE5F2FA2A34A7FB002F57F9 /* ScoreStream.swift */,
+				ABE5F2FC2A34B383002F57F9 /* PlayerType.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		ABE6DD6D2A2B3D0E0029417E /* AppStart */ = {
@@ -521,6 +535,7 @@
 			files = (
 				AB7EBC872A30DBA500E5E0CD /* OffGameInteractor.swift in Sources */,
 				AB7EBC752A2C840100E5E0CD /* LoggedInBuilder.swift in Sources */,
+				ABE5F2FD2A34B383002F57F9 /* PlayerType.swift in Sources */,
 				ABE6DD752A2B40F40029417E /* RootInteractor.swift in Sources */,
 				AB7EBC6C2A2C643800E5E0CD /* LoggedOutBuilder.swift in Sources */,
 				AB7EBC5D2A2C5F0800E5E0CD /* AppComponent.swift in Sources */,
@@ -539,6 +554,7 @@
 				ABE5F2F82A34751F002F57F9 /* TicTacToeInteractor.swift in Sources */,
 				ABE6DD742A2B40F40029417E /* RootBuilder.swift in Sources */,
 				AB4461332A2B332100091323 /* AppDelegate.swift in Sources */,
+				ABE5F2FB2A34A7FB002F57F9 /* ScoreStream.swift in Sources */,
 				AB7EBC742A2C840100E5E0CD /* LoggedInRouter.swift in Sources */,
 				AB4461352A2B332100091323 /* SceneDelegate.swift in Sources */,
 				AB7EBC892A321CCB00E5E0CD /* RootComponent+LoggedIn.swift in Sources */,

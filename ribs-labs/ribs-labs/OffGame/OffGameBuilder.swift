@@ -10,6 +10,7 @@ import RIBs
 protocol OffGameDependency: Dependency {
     var player1Name: String { get }
     var player2Name: String { get }
+    var scoreStream: ScoreStream { get }
 }
 
 /// fileprivate 접근 제한자로 dependency를 선언해 해당 RIB에서만 사용하도록 할 수 있다
@@ -21,6 +22,11 @@ final class OffGameComponent: Component<OffGameDependency> {
 
     fileprivate var player2Name: String {
         dependency.player2Name
+    }
+
+    /// LoggedIn RIB에서와 달리 fileprivate인 이유는, OffGame 하위로 해당 스트림을 토출할 필요가 없어서
+    fileprivate var scoreStream: ScoreStream {
+        dependency.scoreStream
     }
 }
 
@@ -41,7 +47,10 @@ final class OffGameBuilder: Builder<OffGameDependency>, OffGameBuildable {
             player1Name: component.player1Name,
             player2Name: component.player2Name
         )
-        let interactor = OffGameInteractor(presenter: viewController)
+        let interactor = OffGameInteractor(
+            presenter: viewController,
+            scoreStream: component.scoreStream
+        )
         interactor.listener = listener
         return OffGameRouter(interactor: interactor, viewController: viewController)
     }

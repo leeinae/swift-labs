@@ -8,11 +8,6 @@
 import RIBs
 import RxSwift
 
-enum PlayerType: Int {
-    case red = 1
-    case blue
-}
-
 enum GameConstants {
     static let rowCount = 3
     static let colCount = 3
@@ -26,17 +21,17 @@ protocol TicTacToePresentable: Presentable {
     var listener: TicTacToePresentableListener? { get set }
 
     func setCell(atRow row: Int, col: Int, withPlayerType playerType: PlayerType)
-    func announce(winner: PlayerType)
+    func announce(winner: PlayerType?, withCompletionHandler handler: @escaping () -> Void)
 }
 
 protocol TicTacToeListener: AnyObject {
-    func gameDidEnd()
+    func gameDidEnd(withWinner: PlayerType?)
 }
 
 final class TicTacToeInteractor: PresentableInteractor<TicTacToePresentable>, TicTacToePresentableListener {
     weak var router: TicTacToeRouting?
     weak var listener: TicTacToeListener?
-    private var currentPlayer = PlayerType.red
+    private var currentPlayer = PlayerType.player1
     private var board = [[PlayerType?]]()
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
@@ -65,7 +60,7 @@ final class TicTacToeInteractor: PresentableInteractor<TicTacToePresentable>, Ti
 
     private func getAndFlipCurrentPlayer() -> PlayerType {
         let currentPlayer = self.currentPlayer
-        self.currentPlayer = currentPlayer == .red ? .blue : .red
+        self.currentPlayer = currentPlayer == .player1 ? .player2 : .player1
         return currentPlayer
     }
 
@@ -135,11 +130,9 @@ extension TicTacToeInteractor: TicTacToeInteractable {
         presenter.setCell(atRow: row, col: col, withPlayerType: currentPlayer)
 
         if let winner = checkWinner() {
-            presenter.announce(winner: winner)
+            presenter.announce(winner: winner) {
+                self.listener?.gameDidEnd(withWinner: winner)
+            }
         }
-    }
-
-    func closeGame() {
-        listener?.gameDidEnd()
     }
 }

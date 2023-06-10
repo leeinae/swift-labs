@@ -7,18 +7,24 @@
 
 import RIBs
 import RxSwift
-import UIKit
 import SnapKit
+import UIKit
 
 protocol TicTacToePresentableListener: AnyObject {
     func placeCurrentPlayerMark(atRow row: Int, col: Int)
-    func closeGame()
 }
 
 final class TicTacToeViewController: UIViewController, TicTacToePresentable, TicTacToeViewControllable {
     weak var listener: TicTacToePresentableListener?
+    private let player1Name: String
+    private let player2Name: String
 
-    init() {
+    init(
+        player1Name: String,
+        player2Name: String
+    ) {
+        self.player1Name = player1Name
+        self.player2Name = player2Name
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -40,9 +46,9 @@ final class TicTacToeViewController: UIViewController, TicTacToePresentable, Tic
         let indexPathRow = row * GameConstants.colCount + col
         let color: UIColor = {
             switch playerType {
-            case .red:
+            case .player1:
                 return UIColor.red
-            case .blue:
+            case .player2:
                 return UIColor.blue
             }
         }()
@@ -50,18 +56,23 @@ final class TicTacToeViewController: UIViewController, TicTacToePresentable, Tic
         cell?.backgroundColor = color
     }
 
-    func announce(winner: PlayerType) {
+    func announce(winner: PlayerType?, withCompletionHandler handler: @escaping () -> Void) {
         let winnerString: String = {
-            switch winner {
-            case .red:
-                return "Red"
-            case .blue:
-                return "Blue"
+            if let winner = winner {
+                switch winner {
+                case .player1:
+                    return "\(player1Name) Won!"
+                case .player2:
+                    return "\(player2Name) Won!"
+                }
+            } else {
+                return "It's a Tie"
             }
         }()
-        let alert = UIAlertController(title: "\(winnerString) Won!", message: nil, preferredStyle: .alert)
-        let closeAction = UIAlertAction(title: "Close Game", style: .default) { [weak self] _ in
-            self?.listener?.closeGame()
+        let alert = UIAlertController(title: winnerString, message: nil, preferredStyle: .alert)
+        /// closeAction이 기존의 closeGame 메소드를 대체하기 때문에 삭제한다.
+        let closeAction = UIAlertAction(title: "Close Game", style: .default) { _ in
+            handler()
         }
         alert.addAction(closeAction)
         present(alert, animated: true, completion: nil)

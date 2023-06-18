@@ -10,7 +10,7 @@ import RxSwift
 
 protocol RootRouting: ViewableRouting {
     /// LoggedIn RIB을 붙이고, 라우팅한다.
-    func routeToLoggedIn(player1Name: String, player2Name: String)
+    func routeToLoggedIn(player1Name: String, player2Name: String) -> LoggedInActionableItem
 
     /// LoggedOut RIB 어쩌구 동일 (VC가 있는 RIB으로의 라우팅)
     func routeToLoggedOut()
@@ -28,6 +28,8 @@ protocol RootListener: AnyObject {
 final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteractable, RootPresentableListener {
     weak var router: RootRouting?
     weak var listener: RootListener?
+
+    private let loggedInActionableItemSubject = ReplaySubject<LoggedInActionableItem>.create(bufferSize: 1)
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
@@ -47,8 +49,32 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
     }
 
     // MARK: - LoggedOutListener
+
     /// Root RIB은 자식 RIB listener interface를 구현
     func didLoginIn(player1Name: String, player2Name: String) {
-        router?.routeToLoggedIn(player1Name: player1Name, player2Name: player2Name)
+        let loggedInActionableItem = router?.routeToLoggedIn(player1Name: player1Name, player2Name: player2Name)
+
+        if let loggedInActionableItem = loggedInActionableItem {
+            loggedInActionableItemSubject.onNext(loggedInActionableItem)
+        }
+    }
+}
+
+extension RootInteractor: URLHandler {
+    func handle(_ url: URL) {
+        let launchGameWorkflow = LaunchGameWorkflow(url: url)
+        launchGameWorkflow
+            .subscribe(self)
+            .disposeOnDeactivate(interactor: self)
+    }
+}
+
+extension RootInteractor: RootActionableItem {
+    /// RIB에게 actionable item을 전달하는 메소드 (비동기)
+    func waitForLogin() -> Observable<(LoggedInActionableItem, ())> {
+        loggedInActionableItemSubject
+            .map { loggedInItem -> (LoggedInActionableItem, ()) in
+                (loggedInItem, ())
+            }
     }
 }

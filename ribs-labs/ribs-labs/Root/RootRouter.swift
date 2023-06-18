@@ -56,7 +56,7 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>,
 // MARK: - RootRouting
 
 extension RootRouter {
-    func routeToLoggedIn(player1Name: String, player2Name: String) {
+    func routeToLoggedIn(player1Name: String, player2Name: String) -> LoggedInActionableItem {
         if let loggedOut = self.loggedOut {
             detachChild(loggedOut)
             viewController.dismiss(viewController: loggedOut.viewControllable)
@@ -68,7 +68,9 @@ extension RootRouter {
             player1Name: player1Name,
             player2Name: player2Name
         )
-        attachChild(loggedIn)
+        attachChild(loggedIn.router)
+
+        return loggedIn.actionableItem
     }
 
     /// LoggedOut RIB의 리스너로 Root RIB의 interactor 사용

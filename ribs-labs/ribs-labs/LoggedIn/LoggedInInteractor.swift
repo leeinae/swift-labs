@@ -9,8 +9,8 @@ import RIBs
 import RxSwift
 
 protocol LoggedInRouting: Routing {
-    func routeToTicTacToe()
-    func routeToOffGame()
+    func routeToGame(with gameBuilder: GameBuildable)
+    func routeToOffGame(with game: [Game])
     func cleanupViews()
 }
 
@@ -23,16 +23,17 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
     weak var listener: LoggedInListener?
 
     private var currentChild: ViewableRouting?
-    private let mutableScoreStream: MutableScoreStream
+    private var games = [Game]()
 
-    init(mutableScoreStream: MutableScoreStream) {
-        self.mutableScoreStream = mutableScoreStream
+    init(games: [Game]) {
+        self.games = games
         super.init()
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.
+        router?.routeToOffGame(with: games)
     }
 
     override func willResignActive() {
@@ -44,16 +45,32 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
 
     // MARK: - OffGameListener
 
-    func startTicTacToe() {
-        router?.routeToTicTacToe()
+    func startGame(with gameBuilder: GameBuildable) {
+        router?.routeToGame(with: gameBuilder)
     }
 
     // MARK: - TicTacToeListener
 
-    func gameDidEnd(withWinner winner: PlayerType?) {
-        if let winner = winner {
-            mutableScoreStream.updateScore(withWinner: winner)
+//    func ticTacToeDidEnd(with winner: PlayerType?) {
+//        router?.routeToOffGame(with: games)
+//    }
+
+    // MARK: - GameListener
+    func gameDidEnd(with winner: PlayerType?) {
+        router?.routeToOffGame(with: games)
+    }
+}
+
+extension LoggedInInteractor: LoggedInActionableItem {
+    func launchGame(with id: String?) -> Observable<(LoggedInActionableItem, Void)> {
+        let game: Game? = games.first { game in
+            game.id.lowercased() == id?.lowercased()
         }
-        router?.routeToOffGame()
+
+        if let game = game {
+            router?.routeToGame(with: game.builder)
+        }
+
+        return Observable.just((self, ()))
     }
 }

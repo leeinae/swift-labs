@@ -21,11 +21,20 @@ final class LoggedInComponent: Component<LoggedInDependency> {
             ScoreStreamImpl()
         }
     }
+
     let player1Name: String
     let player2Name: String
 
     fileprivate var loggedInViewController: LoggedInViewControllable {
         dependency.loggedInViewController
+    }
+
+    fileprivate var games: [Game] {
+        shared {
+            [
+                TicTacToeAdapter(dependency: self)
+            ]
+        }
     }
 
     init(dependency: LoggedInDependency, player1Name: String, player2Name: String) {
@@ -42,7 +51,7 @@ protocol LoggedInBuildable: Buildable {
         withListener listener: LoggedInListener,
         player1Name: String,
         player2Name: String
-    ) -> LoggedInRouting
+    ) -> (router: LoggedInRouting, actionableItem: LoggedInActionableItem)
 }
 
 final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
@@ -54,22 +63,24 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
         withListener listener: LoggedInListener,
         player1Name: String,
         player2Name: String
-    ) -> LoggedInRouting {
+    ) -> (router: LoggedInRouting, actionableItem: LoggedInActionableItem) {
         let component = LoggedInComponent(
             dependency: dependency,
             player1Name: player1Name,
             player2Name: player2Name
         )
-        let interactor = LoggedInInteractor(mutableScoreStream: component.mutableScoreStream)
+        let interactor = LoggedInInteractor(games: component.games)
         interactor.listener = listener
 
         let offGameBuilder = OffGameBuilder(dependency: component)
         let ticTacToeBuilder = TicTacToeBuilder(dependency: component)
-        return LoggedInRouter(
+        let router = LoggedInRouter(
             interactor: interactor,
             viewController: component.loggedInViewController,
             offGameBuilder: offGameBuilder,
             ticTacToeBuilder: ticTacToeBuilder
         )
+
+        return (router, interactor)
     }
 }

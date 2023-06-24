@@ -13,6 +13,8 @@ protocol TodoPresentableListener: AnyObject {
     // TODO: Declare properties and methods that the view controller can invoke to perform
     // business logic, such as signIn(). This protocol is implemented by the corresponding
     // interactor class.
+
+    func registerTodo(title: String, description: String)
 }
 
 final class TodoViewController: UIViewController, TodoPresentable, TodoViewControllable {
@@ -31,11 +33,14 @@ final class TodoViewController: UIViewController, TodoPresentable, TodoViewContr
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        bind()
     }
 
     // MARK: - Private
 
     private let username: String
+    private var data: [String] = []
+    private let disposeBag = DisposeBag()
 
     // MARK: - UI Component
 
@@ -53,8 +58,10 @@ final class TodoViewController: UIViewController, TodoPresentable, TodoViewContr
         return button
     }()
 
-    private let tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "todoCell")
         return tableView
     }()
 
@@ -76,5 +83,61 @@ final class TodoViewController: UIViewController, TodoPresentable, TodoViewContr
             make.top.equalTo(usernameLabel.snp.bottom).offset(20)
             make.leading.trailing.bottom.equalToSuperview()
         }
+    }
+
+    private func bind() {
+        addButton.rx.tap
+            .subscribe { [weak self] _ in
+                self?.showAddAlert()
+            }
+            .disposed(by: disposeBag)
+    }
+
+    private func showAddAlert() {
+        let alert = UIAlertController(
+            title: "Todo",
+            message: "할 일을 입력하세요",
+            preferredStyle: .alert
+        )
+
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+
+        let save = UIAlertAction(title: "Save", style: .default) { [weak self] _ in
+            let textField1 = alert.textFields![0] as UITextField
+            let textField2 = alert.textFields![1] as UITextField
+            let title = textField1.text ?? ""
+            let description = textField2.text ?? ""
+
+            self?.tableView.reloadData()
+            self?.listener?.registerTodo(title: title, description: description)
+        }
+
+        alert.addTextField { textField in
+            textField.placeholder = "todo"
+            textField.textColor = .black
+        }
+        alert.addTextField { textField in
+            textField.placeholder = "description"
+            textField.textColor = .darkGray
+        }
+        alert.addAction(cancel)
+        alert.addAction(save)
+        present(alert, animated: true, completion: nil)
+    }
+}
+
+extension TodoViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        data.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: "todoCell",
+            for: indexPath
+        ) as UITableViewCell
+        cell.textLabel?.text = data[indexPath.row]
+
+        return cell
     }
 }

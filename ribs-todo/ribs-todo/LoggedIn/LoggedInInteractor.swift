@@ -10,7 +10,7 @@ import RxSwift
 
 protocol LoggedInRouting: Routing {
     func cleanupViews()
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func routeToTodoDetail()
 }
 
 protocol LoggedInListener: AnyObject {
@@ -18,7 +18,6 @@ protocol LoggedInListener: AnyObject {
 }
 
 final class LoggedInInteractor: Interactor, LoggedInInteractable {
-
     weak var router: LoggedInRouting?
     weak var listener: LoggedInListener?
 
@@ -35,5 +34,12 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
         super.willResignActive()
 
         router?.cleanupViews()
+    }
+}
+
+extension LoggedInInteractor {
+    func registerTodo(title: String, description: String) {
+        /// save
+        router?.routeToTodoDetail()
     }
 }

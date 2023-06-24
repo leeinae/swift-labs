@@ -7,7 +7,7 @@
 
 import RIBs
 
-protocol LoggedInInteractable: Interactable, TodoListener {
+protocol LoggedInInteractable: Interactable, TodoListener, DetailTodoListener {
     var router: LoggedInRouting? { get set }
     var listener: LoggedInListener? { get set }
 }
@@ -24,10 +24,12 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     init(
         interactor: LoggedInInteractable,
         viewController: LoggedInViewControllable,
-        todoBuilder: TodoBuildable
+        todoBuilder: TodoBuildable,
+        detailTodoBuilder: DetailTodoBuildable
     ) {
         self.viewController = viewController
         self.todoBuilder = todoBuilder
+        self.detailTodoBuilder = detailTodoBuilder
         super.init(interactor: interactor)
         interactor.router = self
     }
@@ -43,10 +45,19 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         }
     }
 
+    func routeToTodoDetail() {
+        detachCurrenChild()
+
+        let detailTodo = detailTodoBuilder.build(withListener: interactor)
+        attachChild(detailTodo)
+        viewController.present(viewController: detailTodo.viewControllable)
+    }
+
     // MARK: - Private
 
     private let viewController: LoggedInViewControllable
     private let todoBuilder: TodoBuildable
+    private let detailTodoBuilder: DetailTodoBuildable
     private var currentChild: ViewableRouting?
 
     private func routeToTodo() {
@@ -54,5 +65,12 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         attachChild(router)
         currentChild = router
         viewController.present(viewController: router.viewControllable)
+    }
+
+    private func detachCurrenChild() {
+        if let currentChild {
+            detachChild(currentChild)
+            viewController.dismiss(viewController: currentChild.viewControllable)
+        }
     }
 }

@@ -1,34 +1,34 @@
 //
-//  TodoInteractor.swift
+//  DetailTodoInteractor.swift
 //  ribs-todo
 //
-//  Created by Inae Lee on 2023/06/24.
+//  Created by Inae Lee on 2023/06/25.
 //
 
 import RIBs
 import RxSwift
 
-protocol TodoRouting: ViewableRouting {
+protocol DetailTodoRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
-protocol TodoPresentable: Presentable {
-    var listener: TodoPresentableListener? { get set }
+protocol DetailTodoPresentable: Presentable {
+    var listener: DetailTodoPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
-protocol TodoListener: AnyObject {
+protocol DetailTodoListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
-    func registerTodo(title: String, description: String)
 }
 
-final class TodoInteractor: PresentableInteractor<TodoPresentable>, TodoInteractable, TodoPresentableListener {
-    weak var router: TodoRouting?
-    weak var listener: TodoListener?
+final class DetailTodoInteractor: PresentableInteractor<DetailTodoPresentable>, DetailTodoInteractable, DetailTodoPresentableListener {
+
+    weak var router: DetailTodoRouting?
+    weak var listener: DetailTodoListener?
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: TodoPresentable) {
+    override init(presenter: DetailTodoPresentable) {
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -41,11 +41,5 @@ final class TodoInteractor: PresentableInteractor<TodoPresentable>, TodoInteract
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
-    }
-
-    // MARK: - TodoPresentableListener
-
-    func registerTodo(title: String, description: String) {
-        listener?.registerTodo(title: title, description: description)
     }
 }

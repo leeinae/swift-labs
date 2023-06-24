@@ -48,11 +48,13 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
         interactor.listener = listener
 
         let todoBuilder = TodoBuilder(dependency: component)
+        let detailTodoBuilder = DetailTodoBuilder(dependency: component)
 
         return LoggedInRouter(
             interactor: interactor,
             viewController: component.LoggedInViewController,
-            todoBuilder: todoBuilder
+            todoBuilder: todoBuilder,
+            detailTodoBuilder: detailTodoBuilder
         )
     }
 }

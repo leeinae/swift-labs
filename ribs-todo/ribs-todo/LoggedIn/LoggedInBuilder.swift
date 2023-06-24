@@ -15,31 +15,44 @@ protocol LoggedInDependency: Dependency {
 }
 
 final class LoggedInComponent: Component<LoggedInDependency> {
-
     // TODO: Make sure to convert the variable into lower-camelcase.
     fileprivate var LoggedInViewController: LoggedInViewControllable {
-        return dependency.loggedInViewController
+        dependency.loggedInViewController
     }
 
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+    let username: String?
+
+    init(dependency: LoggedInDependency, username: String?) {
+        self.username = username
+        super.init(dependency: dependency)
+    }
 }
 
 // MARK: - Builder
 
 protocol LoggedInBuildable: Buildable {
-    func build(withListener listener: LoggedInListener) -> LoggedInRouting
+    func build(withListener listener: LoggedInListener, username: String?) -> LoggedInRouting
 }
 
 final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
-
     override init(dependency: LoggedInDependency) {
         super.init(dependency: dependency)
     }
 
-    func build(withListener listener: LoggedInListener) -> LoggedInRouting {
-        let component = LoggedInComponent(dependency: dependency)
+    func build(withListener listener: LoggedInListener, username: String?) -> LoggedInRouting {
+        let component = LoggedInComponent(
+            dependency: dependency,
+            username: username
+        )
         let interactor = LoggedInInteractor()
         interactor.listener = listener
-        return LoggedInRouter(interactor: interactor, viewController: component.LoggedInViewController)
+
+        let todoBuilder = TodoBuilder(dependency: component)
+
+        return LoggedInRouter(
+            interactor: interactor,
+            viewController: component.LoggedInViewController,
+            todoBuilder: todoBuilder
+        )
     }
 }

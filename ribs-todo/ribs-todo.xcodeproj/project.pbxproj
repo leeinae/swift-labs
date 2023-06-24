@@ -33,6 +33,11 @@
 		AB074B382A46EAD800D5FE6A /* LoggedInBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB074B352A46EAD800D5FE6A /* LoggedInBuilder.swift */; };
 		AB074B392A46EAD800D5FE6A /* LoggedInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB074B362A46EAD800D5FE6A /* LoggedInInteractor.swift */; };
 		AB074B3B2A46ED3000D5FE6A /* RootComponent+LoggedIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB074B3A2A46ED3000D5FE6A /* RootComponent+LoggedIn.swift */; };
+		AB074B422A47263200D5FE6A /* TodoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB074B3E2A47263200D5FE6A /* TodoRouter.swift */; };
+		AB074B432A47263200D5FE6A /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB074B3F2A47263200D5FE6A /* TodoViewController.swift */; };
+		AB074B442A47263200D5FE6A /* TodoBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB074B402A47263200D5FE6A /* TodoBuilder.swift */; };
+		AB074B452A47263200D5FE6A /* TodoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB074B412A47263200D5FE6A /* TodoInteractor.swift */; };
+		AB074B482A47287700D5FE6A /* LoggedInComponent+Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB074B472A47287700D5FE6A /* LoggedInComponent+Todo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +84,11 @@
 		AB074B352A46EAD800D5FE6A /* LoggedInBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInBuilder.swift; sourceTree = "<group>"; };
 		AB074B362A46EAD800D5FE6A /* LoggedInInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInInteractor.swift; sourceTree = "<group>"; };
 		AB074B3A2A46ED3000D5FE6A /* RootComponent+LoggedIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootComponent+LoggedIn.swift"; sourceTree = "<group>"; };
+		AB074B3E2A47263200D5FE6A /* TodoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRouter.swift; sourceTree = "<group>"; };
+		AB074B3F2A47263200D5FE6A /* TodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
+		AB074B402A47263200D5FE6A /* TodoBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoBuilder.swift; sourceTree = "<group>"; };
+		AB074B412A47263200D5FE6A /* TodoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoInteractor.swift; sourceTree = "<group>"; };
+		AB074B472A47287700D5FE6A /* LoggedInComponent+Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoggedInComponent+Todo.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +143,7 @@
 		AB074AD62A46DD5600D5FE6A /* ribs-todo */ = {
 			isa = PBXGroup;
 			children = (
+				AB074B3D2A47206200D5FE6A /* Todo */,
 				AB074B332A46EAC800D5FE6A /* LoggedIn */,
 				AB074B322A46E74000D5FE6A /* Common */,
 				AB074B242A46E32100D5FE6A /* LoggedOut */,
@@ -215,11 +226,31 @@
 		AB074B332A46EAC800D5FE6A /* LoggedIn */ = {
 			isa = PBXGroup;
 			children = (
+				AB074B462A47286100D5FE6A /* Component */,
 				AB074B342A46EAD800D5FE6A /* LoggedInRouter.swift */,
 				AB074B352A46EAD800D5FE6A /* LoggedInBuilder.swift */,
 				AB074B362A46EAD800D5FE6A /* LoggedInInteractor.swift */,
 			);
 			path = LoggedIn;
+			sourceTree = "<group>";
+		};
+		AB074B3D2A47206200D5FE6A /* Todo */ = {
+			isa = PBXGroup;
+			children = (
+				AB074B3E2A47263200D5FE6A /* TodoRouter.swift */,
+				AB074B3F2A47263200D5FE6A /* TodoViewController.swift */,
+				AB074B402A47263200D5FE6A /* TodoBuilder.swift */,
+				AB074B412A47263200D5FE6A /* TodoInteractor.swift */,
+			);
+			path = Todo;
+			sourceTree = "<group>";
+		};
+		AB074B462A47286100D5FE6A /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				AB074B472A47287700D5FE6A /* LoggedInComponent+Todo.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,17 +395,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB074B2C2A46E33300D5FE6A /* LoggedOutInteractor.swift in Sources */,
+				AB074B452A47263200D5FE6A /* TodoInteractor.swift in Sources */,
+				AB074B442A47263200D5FE6A /* TodoBuilder.swift in Sources */,
 				AB074B312A46E73B00D5FE6A /* UIView+Extension.swift in Sources */,
 				AB074B1F2A46E10E00D5FE6A /* RootViewController.swift in Sources */,
+				AB074B432A47263200D5FE6A /* TodoViewController.swift in Sources */,
 				AB074B232A46E1B100D5FE6A /* AppComponent.swift in Sources */,
 				AB074B382A46EAD800D5FE6A /* LoggedInBuilder.swift in Sources */,
 				AB074B2B2A46E33300D5FE6A /* LoggedOutBuilder.swift in Sources */,
 				AB074B2F2A46E36800D5FE6A /* RootComponent+LoggedOut.swift in Sources */,
 				AB074B392A46EAD800D5FE6A /* LoggedInInteractor.swift in Sources */,
 				AB074B1E2A46E10E00D5FE6A /* RootRouter.swift in Sources */,
+				AB074B482A47287700D5FE6A /* LoggedInComponent+Todo.swift in Sources */,
 				AB074B292A46E33300D5FE6A /* LoggedOutRouter.swift in Sources */,
 				AB074B212A46E10E00D5FE6A /* RootInteractor.swift in Sources */,
 				AB074B3B2A46ED3000D5FE6A /* RootComponent+LoggedIn.swift in Sources */,
+				AB074B422A47263200D5FE6A /* TodoRouter.swift in Sources */,
 				AB074B372A46EAD800D5FE6A /* LoggedInRouter.swift in Sources */,
 				AB074AD82A46DD5600D5FE6A /* AppDelegate.swift in Sources */,
 				AB074ADA2A46DD5600D5FE6A /* SceneDelegate.swift in Sources */,

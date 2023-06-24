@@ -35,6 +35,5 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
         super.willResignActive()
 
         router?.cleanupViews()
-        // TODO: Pause any business logic.
     }
 }

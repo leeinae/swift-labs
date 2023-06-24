@@ -27,7 +27,7 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
         present(viewController.uiviewController, animated: true)
     }
 
-    func dismiss() {
+    func dismiss(viewController: RIBs.ViewControllable) {
         dismiss(animated: true)
     }
 }

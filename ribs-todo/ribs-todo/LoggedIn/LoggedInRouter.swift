@@ -7,7 +7,7 @@
 
 import RIBs
 
-protocol LoggedInInteractable: Interactable {
+protocol LoggedInInteractable: Interactable, TodoListener {
     var router: LoggedInRouting? { get set }
     var listener: LoggedInListener? { get set }
 }
@@ -16,23 +16,43 @@ protocol LoggedInViewControllable: ViewControllable {
     // TODO: Declare methods the router invokes to manipulate the view hierarchy. Since
     // this RIB does not own its own view, this protocol is conformed to by one of this
     // RIB's ancestor RIBs' view.
+    func present(viewController: ViewControllable)
+    func dismiss(viewController: ViewControllable)
 }
 
 final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
-
-    // TODO: Constructor inject child builder protocols to allow building children.
-    init(interactor: LoggedInInteractable, viewController: LoggedInViewControllable) {
+    init(
+        interactor: LoggedInInteractable,
+        viewController: LoggedInViewControllable,
+        todoBuilder: TodoBuildable
+    ) {
         self.viewController = viewController
+        self.todoBuilder = todoBuilder
         super.init(interactor: interactor)
         interactor.router = self
     }
 
+    override func didLoad() {
+        super.didLoad()
+        routeToTodo()
+    }
+
     func cleanupViews() {
-        // TODO: Since this router does not own its view, it needs to cleanup the views
-        // it may have added to the view hierarchy, when its interactor is deactivated.
+        if let currentChild {
+            viewController.dismiss(viewController: currentChild.viewControllable)
+        }
     }
 
     // MARK: - Private
 
     private let viewController: LoggedInViewControllable
+    private let todoBuilder: TodoBuildable
+    private var currentChild: ViewableRouting?
+
+    private func routeToTodo() {
+        let router = todoBuilder.build(withListener: interactor)
+        attachChild(router)
+        currentChild = router
+        viewController.present(viewController: router.viewControllable)
+    }
 }

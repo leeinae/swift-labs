@@ -1,5 +1,5 @@
 //
-//  RootInteractor.swift
+//  LoggedOutInteractor.swift
 //  ribs-todo
 //
 //  Created by Inae Lee on 2023/06/24.
@@ -8,27 +8,27 @@
 import RIBs
 import RxSwift
 
-protocol RootRouting: ViewableRouting {
+protocol LoggedOutRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
-    func routeToLoggedIn(username: String?)
 }
 
-protocol RootPresentable: Presentable {
-    var listener: RootPresentableListener? { get set }
+protocol LoggedOutPresentable: Presentable {
+    var listener: LoggedOutPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
-protocol RootListener: AnyObject {
+protocol LoggedOutListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func didLogin(username: String?, password: String?)
 }
 
-final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteractable, RootPresentableListener {
-    weak var router: RootRouting?
-    weak var listener: RootListener?
+final class LoggedOutInteractor: PresentableInteractor<LoggedOutPresentable>, LoggedOutInteractable, LoggedOutPresentableListener {
+    weak var router: LoggedOutRouting?
+    weak var listener: LoggedOutListener?
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: RootPresentable) {
+    override init(presenter: LoggedOutPresentable) {
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -42,12 +42,10 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
         super.willResignActive()
         // TODO: Pause any business logic.
     }
-}
 
-// MARK: - LoggedOutListener
+    // MARK: - PresentableListener
 
-extension RootInteractor {
-    func didLogin(username: String?, password: String?) {
-        self.router?.routeToLoggedIn(username: username)
+    func signIn(username: String?, password: String?) {
+        listener?.didLogin(username: username, password: password)
     }
 }

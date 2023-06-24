@@ -16,11 +16,22 @@ protocol RootPresentableListener: AnyObject {
 }
 
 final class RootViewController: UIViewController, RootPresentable, RootViewControllable {
-
     weak var listener: RootPresentableListener?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
     }
+
+    func present(viewController: ViewControllable) {
+        present(viewController.uiviewController, animated: true)
+    }
+
+    func dismiss() {
+        dismiss(animated: true)
+    }
 }
+
+// MARK: - LoggedInViewControllable
+
+extension RootViewController: LoggedInViewControllable {}

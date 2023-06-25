@@ -33,5 +33,5 @@ struct TodoManager {
     static var todoList
 
     @UserDefaultWrapper(key: "description", value: [String]())
-    static var detail
+    static var description
 }

@@ -15,6 +15,7 @@ protocol TodoPresentableListener: AnyObject {
     // interactor class.
 
     func registerTodo(title: String, description: String)
+    func routeToDetailTodo()
 }
 
 final class TodoViewController: UIViewController, TodoPresentable, TodoViewControllable {
@@ -34,6 +35,7 @@ final class TodoViewController: UIViewController, TodoPresentable, TodoViewContr
         super.viewDidLoad()
         setupUI()
         bind()
+        loadData()
     }
 
     // MARK: - Private
@@ -110,6 +112,7 @@ final class TodoViewController: UIViewController, TodoPresentable, TodoViewContr
 
             self?.tableView.reloadData()
             self?.listener?.registerTodo(title: title, description: description)
+            self?.listener?.routeToDetailTodo()
         }
 
         alert.addTextField { textField in
@@ -123,6 +126,11 @@ final class TodoViewController: UIViewController, TodoPresentable, TodoViewContr
         alert.addAction(cancel)
         alert.addAction(save)
         present(alert, animated: true, completion: nil)
+    }
+
+    private func loadData() {
+        let todoList = TodoManager.todoList
+        data = todoList
     }
 }
 

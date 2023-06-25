@@ -44,6 +44,7 @@
 		AB6C81192A4747A5006BF752 /* DetailTodoBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C81152A4747A5006BF752 /* DetailTodoBuilder.swift */; };
 		AB6C811A2A4747A5006BF752 /* DetailTodoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C81162A4747A5006BF752 /* DetailTodoInteractor.swift */; };
 		AB6C811C2A474845006BF752 /* LoggedInComponent+DetailTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C811B2A474845006BF752 /* LoggedInComponent+DetailTodo.swift */; };
+		AB6C81222A48114C006BF752 /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C81212A48114C006BF752 /* TodoModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		AB6C81152A4747A5006BF752 /* DetailTodoBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTodoBuilder.swift; sourceTree = "<group>"; };
 		AB6C81162A4747A5006BF752 /* DetailTodoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTodoInteractor.swift; sourceTree = "<group>"; };
 		AB6C811B2A474845006BF752 /* LoggedInComponent+DetailTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoggedInComponent+DetailTodo.swift"; sourceTree = "<group>"; };
+		AB6C81212A48114C006BF752 /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 		AB074AD62A46DD5600D5FE6A /* ribs-todo */ = {
 			isa = PBXGroup;
 			children = (
+				AB6C81202A481141006BF752 /* Model */,
 				AB6C81122A47478B006BF752 /* DetailTodo */,
 				AB074B3D2A47206200D5FE6A /* Todo */,
 				AB074B332A46EAC800D5FE6A /* LoggedIn */,
@@ -277,6 +280,14 @@
 				AB6C81162A4747A5006BF752 /* DetailTodoInteractor.swift */,
 			);
 			path = DetailTodo;
+			sourceTree = "<group>";
+		};
+		AB6C81202A481141006BF752 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AB6C81212A48114C006BF752 /* TodoModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -436,6 +447,7 @@
 				AB074B2F2A46E36800D5FE6A /* RootComponent+LoggedOut.swift in Sources */,
 				AB6C81172A4747A5006BF752 /* DetailTodoRouter.swift in Sources */,
 				AB074B392A46EAD800D5FE6A /* LoggedInInteractor.swift in Sources */,
+				AB6C81222A48114C006BF752 /* TodoModel.swift in Sources */,
 				AB074B1E2A46E10E00D5FE6A /* RootRouter.swift in Sources */,
 				AB074B482A47287700D5FE6A /* LoggedInComponent+Todo.swift in Sources */,
 				AB074B292A46E33300D5FE6A /* LoggedOutRouter.swift in Sources */,

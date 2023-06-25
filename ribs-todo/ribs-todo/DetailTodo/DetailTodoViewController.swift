@@ -16,7 +16,6 @@ protocol DetailTodoPresentableListener: AnyObject {
 }
 
 final class DetailTodoViewController: UIViewController, DetailTodoPresentable, DetailTodoViewControllable {
-
     weak var listener: DetailTodoPresentableListener?
 
     override func viewDidLoad() {
@@ -24,9 +23,41 @@ final class DetailTodoViewController: UIViewController, DetailTodoPresentable, D
         setupUI()
     }
 
+    func set(todo: TodoModel) {
+        titleLabel.text = todo.title
+        descriptionLabel.text = todo.description
+    }
+
+    // MARK: - UI Component
+
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.numberOfLines = 0
+        return label
+    }()
+
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 12)
+        label.textColor = .darkGray
+        return label
+    }()
+
     // MARK: - Private
 
     private func setupUI() {
-        view.backgroundColor = .orange
+        view.backgroundColor = .white
+
+        view.addSubviews([titleLabel, descriptionLabel])
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(24)
+            make.leading.trailing.equalToSuperview().inset(12)
+        }
+
+        descriptionLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(24)
+            make.leading.trailing.equalToSuperview().inset(12)
+        }
     }
 }

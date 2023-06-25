@@ -19,7 +19,7 @@ protocol TodoPresentable: Presentable {
 
 protocol TodoListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
-    func registerTodo(title: String, description: String)
+    func routToDetailTodo()
 }
 
 final class TodoInteractor: PresentableInteractor<TodoPresentable>, TodoInteractable, TodoPresentableListener {
@@ -28,7 +28,8 @@ final class TodoInteractor: PresentableInteractor<TodoPresentable>, TodoInteract
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: TodoPresentable) {
+    init(presenter: TodoPresentable, mutableTodoStream: MutableTodoStream) {
+        self.mutableTodoStream = mutableTodoStream
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -46,6 +47,17 @@ final class TodoInteractor: PresentableInteractor<TodoPresentable>, TodoInteract
     // MARK: - TodoPresentableListener
 
     func registerTodo(title: String, description: String) {
-        listener?.registerTodo(title: title, description: description)
+        TodoManager.todoList.append(title)
+        TodoManager.description.append(description)
+
+        mutableTodoStream.updateTodo(with: .init(title: title, description: description))
     }
+
+    func routeToDetailTodo() {
+        listener?.routToDetailTodo()
+    }
+
+    // MARK: - Private
+
+    private let mutableTodoStream: MutableTodoStream
 }

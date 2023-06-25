@@ -16,15 +16,22 @@ protocol LoggedInDependency: Dependency {
 
 final class LoggedInComponent: Component<LoggedInDependency> {
     // TODO: Make sure to convert the variable into lower-camelcase.
-    fileprivate var LoggedInViewController: LoggedInViewControllable {
-        dependency.loggedInViewController
-    }
-
-    let username: String?
 
     init(dependency: LoggedInDependency, username: String?) {
         self.username = username
         super.init(dependency: dependency)
+    }
+
+    var mutableTodoStream: MutableTodoStream {
+        shared {
+            TodoStreamImpl()
+        }
+    }
+
+    let username: String?
+
+    fileprivate var loggedInViewController: LoggedInViewControllable {
+        dependency.loggedInViewController
     }
 }
 
@@ -44,7 +51,7 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
             dependency: dependency,
             username: username
         )
-        let interactor = LoggedInInteractor()
+        let interactor = LoggedInInteractor(mutableTodoStream: component.mutableTodoStream)
         interactor.listener = listener
 
         let todoBuilder = TodoBuilder(dependency: component)
@@ -52,7 +59,7 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
 
         return LoggedInRouter(
             interactor: interactor,
-            viewController: component.LoggedInViewController,
+            viewController: component.loggedInViewController,
             todoBuilder: todoBuilder,
             detailTodoBuilder: detailTodoBuilder
         )

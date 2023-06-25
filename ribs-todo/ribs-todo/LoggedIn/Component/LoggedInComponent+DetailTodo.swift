@@ -7,4 +7,8 @@
 
 import Foundation
 
-extension LoggedInComponent: DetailTodoDependency {}
+extension LoggedInComponent: DetailTodoDependency {
+    var todoStream: TodoStream {
+        mutableTodoStream
+    }
+}

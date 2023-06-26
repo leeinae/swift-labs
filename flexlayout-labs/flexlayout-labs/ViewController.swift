@@ -51,19 +51,37 @@ class ViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
-        flexContainer.pin.top().left().right()
+        flexContainer.pin.all(view.pin.safeArea)
         flexContainer.flex.layout()
     }
 
     private func setupUI() {
         view.addSubview(flexContainer)
 
-        flexContainer.flex.direction(.column).padding(12).define { flex in
-            flex.addItem().direction(.row).define { flex in
-                flex.addItem(imageView).width(100).aspectRatio(of: imageView)
+        flexContainer.flex
+            .padding(12)
+            .alignItems(.start)
+            .define { flex in
+                flex.addItem()
+                    .direction(.row)
+                    .alignSelf(.end)
+                    .define { flex in
+                        flex.addItem(imageView)
+                            .size(100)
+                            .aspectRatio(of: imageView)
 
-                flex.addItem().direction(.column).paddingLeft(12)
+                        let colorView = UIView()
+                        colorView.backgroundColor = .systemMint
+                        flex.addItem(colorView)
+                            .size(100)
+                    }
             }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) { [weak self] in
+            self?.imageView.flex.isIncludedInLayout(false)
+            self?.imageView.flex.markDirty()
+
+            self?.flexContainer.flex.layout()
         }
     }
 }

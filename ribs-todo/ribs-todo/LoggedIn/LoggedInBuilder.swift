@@ -8,17 +8,15 @@
 import RIBs
 
 protocol LoggedInDependency: Dependency {
-    // TODO: Make sure to convert the variable into lower-camelcase.
-    var loggedInViewController: LoggedInViewControllable { get }
-    // TODO: Declare the set of dependencies required by this RIB, but won't be
-    // created by this RIB.
+    var loggedInStaticRequirement: LoggedInStaticRequired { get }
 }
 
 final class LoggedInComponent: Component<LoggedInDependency> {
     // TODO: Make sure to convert the variable into lower-camelcase.
 
-    init(dependency: LoggedInDependency, username: String?) {
-        self.username = username
+    init(dependency: LoggedInDependency, dynamicRequirement: LoggedInDynamicRequired) {
+        username = dynamicRequirement.username
+        requirement = LoggedInRequirement(loggedInViewController: dependency.loggedInStaticRequirement.loggedInViewController)
         super.init(dependency: dependency)
     }
 
@@ -28,11 +26,8 @@ final class LoggedInComponent: Component<LoggedInDependency> {
         }
     }
 
-    let username: String?
-
-    fileprivate var loggedInViewController: LoggedInViewControllable {
-        dependency.loggedInViewController
-    }
+    var username: String?
+    fileprivate let requirement: LoggedInRequired
 }
 
 // MARK: - Builder
@@ -49,7 +44,7 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
     func build(withListener listener: LoggedInListener, username: String?) -> LoggedInRouting {
         let component = LoggedInComponent(
             dependency: dependency,
-            username: username
+            dynamicRequirement: LoggedInDynamicRequirement(username: username)
         )
         let interactor = LoggedInInteractor(mutableTodoStream: component.mutableTodoStream)
         interactor.listener = listener
@@ -59,7 +54,7 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
 
         return LoggedInRouter(
             interactor: interactor,
-            viewController: component.loggedInViewController,
+            viewController: component.requirement.loggedInViewController,
             todoBuilder: todoBuilder,
             detailTodoBuilder: detailTodoBuilder
         )

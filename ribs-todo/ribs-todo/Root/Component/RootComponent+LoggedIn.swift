@@ -8,7 +8,7 @@
 import Foundation
 
 extension RootComponent: LoggedInDependency {
-    var loggedInViewController: LoggedInViewControllable {
-        return rootViewController
+    var loggedInStaticRequirement: LoggedInStaticRequired {
+        LoggedInStaticRequirment(loggedInViewController: rootViewController)
     }
 }

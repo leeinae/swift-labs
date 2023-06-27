@@ -61,7 +61,7 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     private var currentChild: ViewableRouting?
 
     private func routeToTodo() {
-        let router = todoBuilder.build(withListener: interactor)
+        let router = todoBuilder.build(withListener: interactor, requirement: TodoDynamicRequirement())
         attachChild(router)
         currentChild = router
         viewController.present(viewController: router.viewControllable)

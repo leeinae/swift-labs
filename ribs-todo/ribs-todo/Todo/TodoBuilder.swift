@@ -8,27 +8,25 @@
 import RIBs
 
 protocol TodoDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
-    var inputUsername: String { get }
-    var mutableTodoStream: MutableTodoStream { get }
+    var todoStaticRequirement: TodoStaticRequired { get }
 }
 
 final class TodoComponent: Component<TodoDependency> {
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
-    fileprivate var inputUsername: String {
-        dependency.inputUsername
+    init(dependency: TodoDependency, dynamicRequirement: TodoDynamicRequired) {
+        requirement = TodoRequirement(
+            mutableTodoStream: dependency.todoStaticRequirement.mutableTodoStream,
+            inputUsername: dependency.todoStaticRequirement.inputUsername
+        )
+        super.init(dependency: dependency)
     }
 
-    fileprivate var mutableTodoStream: MutableTodoStream {
-        dependency.mutableTodoStream
-    }
+    fileprivate let requirement: TodoRequirement
 }
 
 // MARK: - Builder
 
 protocol TodoBuildable: Buildable {
-    func build(withListener listener: TodoListener) -> TodoRouting
+    func build(withListener listener: TodoListener, requirement: TodoDynamicRequired) -> TodoRouting
 }
 
 final class TodoBuilder: Builder<TodoDependency>, TodoBuildable {
@@ -36,12 +34,12 @@ final class TodoBuilder: Builder<TodoDependency>, TodoBuildable {
         super.init(dependency: dependency)
     }
 
-    func build(withListener listener: TodoListener) -> TodoRouting {
-        let component = TodoComponent(dependency: dependency)
-        let viewController = TodoViewController(username: component.inputUsername)
+    func build(withListener listener: TodoListener, requirement: TodoDynamicRequired) -> TodoRouting {
+        let component = TodoComponent(dependency: dependency, dynamicRequirement: requirement)
+        let viewController = TodoViewController(username: dependency.todoStaticRequirement.inputUsername)
         let interactor = TodoInteractor(
             presenter: viewController,
-            mutableTodoStream: component.mutableTodoStream
+            requirement: component.requirement
         )
         interactor.listener = listener
         return TodoRouter(interactor: interactor, viewController: viewController)

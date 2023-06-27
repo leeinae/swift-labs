@@ -8,7 +8,10 @@
 import Foundation
 
 extension LoggedInComponent: TodoDependency {
-    var inputUsername: String {
-        username ?? "NOT USER"
+    var todoStaticRequirement: TodoStaticRequired {
+        TodoStaticRequirement(
+            mutableTodoStream: mutableTodoStream,
+            inputUsername: username ?? ""
+        )
     }
 }

@@ -26,10 +26,8 @@ final class TodoInteractor: PresentableInteractor<TodoPresentable>, TodoInteract
     weak var router: TodoRouting?
     weak var listener: TodoListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
-    init(presenter: TodoPresentable, mutableTodoStream: MutableTodoStream) {
-        self.mutableTodoStream = mutableTodoStream
+    init(presenter: TodoPresentable, requirement: TodoInteractorRequired) {
+        mutableTodoStream = requirement.mutableTodoStream
         super.init(presenter: presenter)
         presenter.listener = self
     }

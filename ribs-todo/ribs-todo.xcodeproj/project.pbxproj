@@ -39,6 +39,7 @@
 		AB074B452A47263200D5FE6A /* TodoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB074B412A47263200D5FE6A /* TodoInteractor.swift */; };
 		AB074B482A47287700D5FE6A /* LoggedInComponent+Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB074B472A47287700D5FE6A /* LoggedInComponent+Todo.swift */; };
 		AB0BB0BC2A4B28CA00C31C91 /* LoggedInRequired.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0BB0BB2A4B28CA00C31C91 /* LoggedInRequired.swift */; };
+		AB0BB0BE2A4B37C200C31C91 /* TodoRequired.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0BB0BD2A4B37C200C31C91 /* TodoRequired.swift */; };
 		AB6C81112A47446F006BF752 /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C81102A47446F006BF752 /* TodoManager.swift */; };
 		AB6C81172A4747A5006BF752 /* DetailTodoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C81132A4747A5006BF752 /* DetailTodoRouter.swift */; };
 		AB6C81182A4747A5006BF752 /* DetailTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C81142A4747A5006BF752 /* DetailTodoViewController.swift */; };
@@ -98,6 +99,7 @@
 		AB074B412A47263200D5FE6A /* TodoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoInteractor.swift; sourceTree = "<group>"; };
 		AB074B472A47287700D5FE6A /* LoggedInComponent+Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoggedInComponent+Todo.swift"; sourceTree = "<group>"; };
 		AB0BB0BB2A4B28CA00C31C91 /* LoggedInRequired.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInRequired.swift; sourceTree = "<group>"; };
+		AB0BB0BD2A4B37C200C31C91 /* TodoRequired.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRequired.swift; sourceTree = "<group>"; };
 		AB6C81102A47446F006BF752 /* TodoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoManager.swift; sourceTree = "<group>"; };
 		AB6C81132A4747A5006BF752 /* DetailTodoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTodoRouter.swift; sourceTree = "<group>"; };
 		AB6C81142A4747A5006BF752 /* DetailTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTodoViewController.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				AB074B402A47263200D5FE6A /* TodoBuilder.swift */,
 				AB074B412A47263200D5FE6A /* TodoInteractor.swift */,
 				AB6C81102A47446F006BF752 /* TodoManager.swift */,
+				AB0BB0BD2A4B37C200C31C91 /* TodoRequired.swift */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				AB074B2C2A46E33300D5FE6A /* LoggedOutInteractor.swift in Sources */,
 				AB6C811C2A474845006BF752 /* LoggedInComponent+DetailTodo.swift in Sources */,
 				AB074B452A47263200D5FE6A /* TodoInteractor.swift in Sources */,
+				AB0BB0BE2A4B37C200C31C91 /* TodoRequired.swift in Sources */,
 				AB6C81112A47446F006BF752 /* TodoManager.swift in Sources */,
 				AB6C811A2A4747A5006BF752 /* DetailTodoInteractor.swift in Sources */,
 				AB074B442A47263200D5FE6A /* TodoBuilder.swift in Sources */,

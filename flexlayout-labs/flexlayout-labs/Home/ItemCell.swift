@@ -76,11 +76,7 @@ final class ItemCell: UICollectionViewCell {
                     }
 
                 /// button
-                flex.addItem().direction(.row)
-                    .define { flex in
-                        flex.addItem().grow(1)
-                        flex.addItem(delayButton).padding(2, 4)
-                    }
+                flex.addItem(delayButton).padding(2, 4).alignSelf(.end)
             }
     }
 
@@ -92,7 +88,7 @@ final class ItemCell: UICollectionViewCell {
 
     private let mainIconImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "heart.fill")?.withTintColor(.init(rgb: 0xd49ba7), renderingMode: .alwaysOriginal)
+        imageView.image = UIImage(systemName: "heart.fill")?.withTintColor(.init(rgb: 0xD49BA7), renderingMode: .alwaysOriginal)
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .white
         imageView.layer.cornerRadius = 15
